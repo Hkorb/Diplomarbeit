@@ -1,0 +1,105 @@
+\usepackage[english]{babel}                          % deutsche Trennmuster
+% \usepackage{ae}                           % beseitigt Fehler beim pdf erzeugen
+
+\usepackage[T1]{fontenc}                    % T1-kodierte Schriften, korrekte Trennmuster fuer Worte mit Umlauten
+\usepackage[utf8]{inputenc}
+\usepackage[default]{opensans}
+\usepackage{courier}                        % Courier\ttdefault
+\usepackage{microtype}
+\usepackage{mathswap}
+
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{esint}                          %schöne integrale, benötigt amsmath
+
+\usepackage{wrapfig}                        % text um bilder fliesen lassen
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{color}                          % Schriftfarbe
+\usepackage{lscape}
+\usepackage{subcaption}
+\usepackage[subfigure]{tocloft}
+\usepackage{appendix}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pdfpages}
+\usepackage{verbatim}
+\usepackage[tight,ugly]{units}
+% \usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}              %links an referenzen setzen
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage{placeins}
+% packages für Programmablaufplan
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepgflibrary{arrows}
+
+%plus(minus)
+% \usepackage{relsize}
+% \newcommand*\myPM{\ensuremath{\substack{+\\[-0.25em]-}\,}}
+% \newcommand*\myPMbM{\ensuremath{\substack{+\\[-0.25em]\mathsmaller(-\mathsmaller)}\,}}
+% \newcommand*\myPMbP{\ensuremath{\substack{\mathsmaller(+\mathsmaller)\\[-0.25em]-}\,}}
+
+% defninierte Farben
+\definecolor{fond}{RGB}{240,240,240}
+
+\renewcommand{\vec}[1]{\boldsymbol{\mathrm{#1}}}
+\renewcommand{\b}[1]{\mathbf{#1}}
+\newcommand{\its}{\it\sffamily}
+\renewcommand{\captionlabelfont}{\bfseries\sffamily}                                                          % Bildunterschriften fett, sf-Schriftart
+\renewcommand{\captionfont}{\sffamily}                                                                          % Bildunterschriften sf-Schriftart
+\captionsetup[table]{singlelinecheck = true, aboveskip=0pt, belowskip=7pt}  % Format Tabellenüberschriften
+\newcommand{\tabformat}{\small\sffamily}                                                                        % Serifenlose und kleine Schrift in Tabelle
+\renewcommand{\arraystretch}{1.4}                                                                                       % Groessere Abstaende zwischen Zeilen in Tabelle
+
+% Seitenaufbau
+\setstretch{1.4}                % Zeilenabstand
+\setlength{\parskip}{6pt}       % Extra Abstand bei Absatz mit \par - Befehl
+\setlength{\parindent}{0pt}     % kein Einrücken des Textes in erster Zeile eines Absatzes
+\raggedbottom                   %seite nicht zwingend bis unten vollsetzen
+
+% Seitenlayout, Seitenkopf und Fuss gestalten
+\setlength{\topmargin}{-15mm}       % Abstand des Kopfes zu der Seitenoberkante
+\setlength{\footheight}{17pt}
+
+\usepackage[outer=20mm,inner=30mm,bottom=40mm,headsep=10mm,footskip=12mm,head=17pt]{geometry}
+% \addtokomafont{pagehead}{\scshape}
+% \pagestyle{headings}
+
+%kopf- und fußzeilen
+%\renewcommand{\familydefault}{\sfdefault}   %serifenlose schrift
+\usepackage[headsepline]{scrlayer-scrpage}
+\automark[chapter]{chapter}
+%\automark*{section}
+\clearpairofpagestyles
+\ohead{\headmark}
+\ofoot*{\pagemark}
+
+
+% Punkt + Komma Abstände bei Tausendern/Dezimalzahlen ans dt. anpassen
+%\mathcode`,="013B
+%\mathcode`.="613A
+
+% Literaturverzeichnis
+%\usepackage{cite}
+\usepackage[backend=bibtex8, style=numeric, giveninits=true, doi=false, isbn=false, eprint=false]{biblatex}
+\renewbibmacro{in:}{}
+\usepackage{csquotes}
+%\usepackage{bibgerm}
+\renewcommand{\pnumfont}{\sffamily}                     % Seitenzahlen serifenlos
+\renewcommand{\cftsecpagefont}{\sffamily}
+\renewcommand{\cftsubsecpagefont}{\sffamily}
+\renewcommand{\cftsubsecindent}{1.5em}
+\renewcommand{\cftsecfont}{\sffamily}
+\renewcommand{\cftsubsecfont}{\sffamily}
+\renewcommand{\cftchapdotsep}{4.1}
+\renewcommand*{\chapterheadstartvskip}{\vspace*{-1cm}}
+\renewcommand{\equationautorefname}{Eq.}
+%\usepackage{comment}
+%\excludecomment{figure}
+%\let\endfigure\relax
+\usepackage{pdflscape}

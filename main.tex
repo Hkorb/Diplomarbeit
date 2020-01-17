@@ -1,0 +1,43 @@
+% zweiseitiger druck -> bindung
+\documentclass[a4paper,10pt,twoside,ngerman,bibliography=totoc]{scrreprt}
+% einseitiger druck -> ebook
+% \documentclass[a4paper,11pt,oneside,ngerman,bibliography=totoc]{scrreprt}
+
+\input{Style.tex}	% Formatierung
+\addbibresource{bib.bib}
+
+\begin{document}
+
+	\mathswapoff                 % \mathswapoff for ENGLISH math notation !
+	\graphicspath{{pics/}}	% Grafikpfad
+	
+	\pagestyle{empty}
+	\include{chapters/Titelseite}
+	\cleardoublepage
+	\cleardoublepage
+	\include{chapters/Abstract}
+	\cleardoublepage
+	
+	\pagestyle{plain}
+	\pagenumbering{Roman}
+	\vspace*{-2cm} 
+	\tableofcontents
+	\cleardoublepage
+	\pagestyle{scrheadings}
+	\include{chapters/Nomenclature}
+
+	
+	\cleardoublepage
+	
+	\pagenumbering{arabic}
+% 	\setlength{\abovedisplayskip}{16pt}		% größerer Abstand vor Equations
+% 	\setlength{\belowdisplayskip}{16pt}		% größerer Abstand nach Equations
+  \clearpage
+  \renewcommand{\bibname}{Bibliography}
+  \printbibliography
+  \cleardoublepage
+	\appendix
+	\include{chapters/Appendix}
+    \include{chapters/Selbst}
+
+\end{document}
