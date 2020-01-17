@@ -1,0 +1,52 @@
+% zweiseitiger druck -> bindung
+\documentclass[a4paper,10pt,twoside,ngerman,bibliography=totoc]{scrreprt}
+% einseitiger druck -> ebook
+% \documentclass[a4paper,11pt,oneside,ngerman,bibliography=totoc]{scrreprt}
+
+\input{da_sty}	% Formatierung
+
+
+\begin{document}
+
+	\mathswapon                 % \mathswapoff for ENGLISH math notation !
+	\graphicspath{{bilder/}}	% Grafikpfad
+	
+	\pagestyle{empty}
+	\include{kapitel/titelseite}
+	\includepdf{kapitel/deckblatt.pdf}
+	\cleardoublepage
+	\includepdf{kapitel/aufgabenstellung.pdf}
+	\cleardoublepage
+	\include{kapitel/abstract}
+	\cleardoublepage
+	
+	\pagestyle{plain}
+	\pagenumbering{Roman}
+	\vspace*{-2cm} 
+	\tableofcontents
+	\cleardoublepage
+	\include{kapitel/symbol}
+	
+	\cleardoublepage
+	\pagestyle{scrheadings}
+	\pagenumbering{arabic}
+% 	\setlength{\abovedisplayskip}{16pt}		% größerer Abstand vor Equations
+% 	\setlength{\belowdisplayskip}{16pt}		% größerer Abstand nach Equations
+
+	\include{kapitel/einleitung}
+	\input{kapitel/theorie}
+	\input{kapitel/beispiele}
+	\input{kapitel/hinweise}
+	\input{kapitel/zusammenfassung}
+
+  \clearpage
+  \renewcommand{\bibname}{Literaturverzeichnis}
+  \bibliographystyle{abbrv}
+  \bibliography{literatur}
+
+  \cleardoublepage
+	\appendix
+	\include{kapitel/anhang}
+	\include{kapitel/selbstst}
+
+\end{document}
