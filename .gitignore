@@ -1,0 +1,11 @@
+*.aux
+*.toc
+*.log
+main-blx.bib
+main.run.xml
+main.out
+main.blg
+bib.bib.sav
+main.bbl
+main.synctex.gz
+pics/logo_schwarz.pdf
