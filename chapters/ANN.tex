@@ -1,4 +1,36 @@
 \chapter{ANN stuff}
+\section{Reinforcement Learning}
+\subsection{Markov Decision Process}
+The mathematical formulation on which RL is based is the Markov Decision Process (MDP). Its two main components are the agent that given a state $S_t$ takes an action $A_t$, and the environment, that responds to the action $A_t$ with changing its state to $S_{t+1}$ and giving feedback to the agent in form of a reward $R_t$. The interaction takes place at discrete time steps $t$ and the sequence of state, action and reward is referred to as the trajectory. The dynamics of the MDP are described by the function $p$ that is defined in \eqref{eq:prob_func}. It defines the probability of the state $s'$ with reward $r$ occuring, given the state $s$ and action $a$. Note that the following derivations will be constricted to finite MDPs, meaning that state and action space are discrete, however the concepts all are transferable to continuous action and state space.
+\begin{align}
+	p(s',r \vert s,a) \doteq Pr(S_t=s', R_t=r \vert S_{t-1} = s, A_{t-1} = a) \label{eq:prob_func}
+\end{align}
+For a process to be a Markov Decision Process, the $p$ must only depent on $s$ and $a$. Therefore $s$ must include all information necessary to determine the future behaviour of the environment. This is not limited to information currently present in the environment, when thinking of this in terms of the wind farm problem at hand, the state could include data about wind speeds at the current time but also from time steps in the past. This approach allows to model virtually any interaction as a MDP, simply by including every bit of information from the beginning of time into the state. Obviously this is not feasible and therefore a careful choice of the information in the state is necessary. \\
+The goal of the learning process is to maximize the sum of the rewards in the long run. Therefore a new quantity is defined, the return $G_t$ that includes not only $R_t$ but also the rewards received in future time steps. While in many applications of RL, the process naturally comes to an end, referred to as the terminal state $S_T$, in problems of continuous control this is not the case. Therefore the timeline is broken up into episodes. This allows for a finite computation of $G_t$. A typical formulation of $G_t$, referred to as a discounted return is given in \eqref{eq:return}. It includes a discount rate $\gamma$, that emphasizes rewards in the near future. If $\gamma = 0$, $G_t = R_t$, if $\gamma = 1$, the return is the sum of all future rewards. \cite[p. 47- 57]{sutton_reinforcement_2018}
+\begin{align}
+	G_t \doteq R_t + \gamma R_{t+1} + \gamma^2 R_{t+2} + \gamma^3 R_{t+3}... = \sum_{t'=t}^{T}\gamma^{t'-t} R_{t'},\quad \gamma \in [0, 1] \label{eq:return}
+\end{align}
+Now the goal of the learning process is defined, but not what to learn. There exist three possible answers to this question: a model of the environment, a value function or a policy. Also combinations of these components is possible. In the case of continuous control, most common approaches are model-free, meaning either learning a value function, a policy or both. Therefore model-based methods will not be discussed further and the reader is referred to the book by Sutton and Barto \cite{sutton_reinforcement_2018}. \\
+The policy $\pi$ is the mapping from states to actions with a set of adjustable parameters. Under the policy $\pi$ with its parameters set to $\theta$, the probability of Action $A_t=a$ given a state $S_t=s$ is denoted as $\pi_\theta(a|s)$. The value function of a state $s$ under a policy $\pi_\theta$ is denoted as $v_{\pi_\theta}(s)$ and is the expected return if the agent acts according to $\pi_\theta$, starting from state $s$. Note that for convenience the parameters of $\pi$ will be dropped. For MDPs it can be defined as \eqref{eq:value_func}. 
+\begin{align}
+	v_{\pi} &\doteq \mathrm{E}_\pi \left[ G_t \vert S_t=s \right] =
+	\mathrm{E}_\pi \left[\sum_{t'=t}^{T}\gamma^{t'-t} R_{t'} \vert S_t=s\right] \label{eq:value_func} \\
+	&= \mathrm{E}_\pi \left[ R_t + \gamma G_{t+1} \vert S_t = s\right] \\
+	&= \sum_{a} \pi(a \vert s) 
+	\sum_{s'} \sum_{r} p(s',r \vert s,a) \left( r + \gamma \mathrm{E}_\pi \left[ G_{t+1} \vert S_{t+1} = s' \right] \right) \\
+	&= \sum_{a} \pi(a \vert s) 
+	\sum_{s'} \sum_{r} p(s',r \vert s,a) \left( r + \gamma v_\pi(s') \right) \label{eq:Bellmann}
+\end{align}
+In the form of \eqref{eq:Bellmann}, the equation is referred to as the Bellmann equation and its unique solution is the value function $v_\pi$. Analogously, the action-value function is the expected reward of taking action $a$ at state $s$ under the policy $\pi$, denoted by $q_\pi(s,a)$. It is defined by \eqref{eq:action_value_func}.
+\begin{align}
+	q_\pi(s,a) \doteq \mathrm{E}_\pi \left[ G_t \vert S_t=s, A_t=a \right] =
+	\mathrm{E}_\pi \left[\sum_{t'=t}^{T}\gamma^{t'-t} R_{t'} \vert S_t=s, A_t=a\right] \label{eq:action_value_func} \\
+\end{align}
+ When considering the optimal policy, which is the policy that yields the highest expected return for all states, the Bellman optimality equation can be written as \eqref{eq:Bellman_optimal}, with $v_\star$ denoting the value function under the optimal policy.
+\begin{align}
+	v_\star(s) &= \max_a \sum_{s'} \sum_{r} p(s', r \vert s,a)\left(r + \gamma v_\star(s')\right) \label{eq:Bellman_optimal}
+\end{align}
+GPI 
 \section{Policy Gradient Methods}
 \section{backpropagation}
 \section{ANN Design}

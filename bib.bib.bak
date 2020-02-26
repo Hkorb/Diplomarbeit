@@ -81,6 +81,29 @@
   publisher = {Wiley},
 }
 
+@Periodical{Fredrich2020,
+  title    = {Windrad sucht Standort},
+  year     = {2020},
+  editor   = {Benjamin Fredrich},
+  language = {german},
+  month    = {01},
+  series   = {Katapult - Magazin},
+  volume   = {16},
+}
+
+@Article{Verma2018,
+  author    = {Siddhartha Verma and Guido Novati and Petros Koumoutsakos},
+  journal   = {Proceedings of the National Academy of Sciences},
+  title     = {Efficient collective swimming by harnessing vortices through deep reinforcement learning},
+  year      = {2018},
+  month     = {may},
+  number    = {23},
+  pages     = {5849--5854},
+  volume    = {115},
+  doi       = {10.1073/pnas.1800923115},
+  publisher = {Proceedings of the National Academy of Sciences},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
 
 @Comment{jabref-meta: grouping:
