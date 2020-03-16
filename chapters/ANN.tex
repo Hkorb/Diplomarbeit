@@ -1,4 +1,4 @@
-\chapter{}
+\chapter{Machine Learning for a Continuous Control Problem}
 \section{Reinforcement Learning}
 \subsection{Markov Decision Process}
 The mathematical formulation on which RL is based is the Markov Decision Process (MDP). Its two main components are the agent that given a state $S_t$ takes an action $A_t$, and the environment, that responds to the action $A_t$ with changing its state to $S_{t+1}$ and giving feedback to the agent in form of a reward $R_t$. The interaction takes place at discrete time steps $t$ and the sequence of state, action and reward is referred to as the trajectory. The dynamics of the MDP are described by the function $p$ that is defined in \eqref{eq:prob_func}. It defines the probability of the state $s'$ with reward $r$ occuring, given the state $s$ and action $a$. Note that the following derivations will be constricted to finite MDPs, meaning that state and action space are discrete, however the concepts all are transferable to continuous action and state space.
@@ -23,7 +23,7 @@ In the form of \eqref{eq:Bellmann}, the equation is referred to as the Bellmann 
 	q_\pi(s,a) \doteq \mathrm{E}_\pi \left[ G_t \vert S_t=s, A_t=a \right] =
 	\mathrm{E}_\pi \left[\sum_{t'=t}^{T}\gamma^{t'-t} R_{t'} \vert S_t=s, A_t=a\right] \label{eq:action_value_func} 
 \end{align}
-\section{Policy Gradient Methods}
+\subsection{Policy Gradient Methods}
 With a known value function, it is possible to construct a policy and by improving the value function, the policy can be improved. However, there exist advantages to directly improve the policy, especially for continuous state and action space. Policy gradient methods use the gradient of a perfomance measure $J(\vec{\theta})$ with respect to the parameters $\vec{\theta}$ of a policy. This gradient can be used in optimization algorithms, such as stochastic gradient descent \cite[p. 201]{sutton_reinforcement_2018} or its extensions such as Adam \cite{kingma_adam_2017}. In its basic form, SGD performs an update according to \ref{eq:sgd}. The parameter $\alpha$ is called the learning rate.
 \begin{align}
 	\vec{\theta}_{t+1} = \vec{\theta}_t + \alpha \nabla J(\vec{\theta}) \label{eq:sgd}
@@ -45,3 +45,29 @@ In addition to the ratio probability clipping, other regularizations can be adde
 
 
 \section{Artificial Neural Networks}
+\subsection{Feed-forward networks}
+In the section above, a way to update parameters of the policy or value function were described, however, no description of the function itself was given. In principal any function with a set of parameters can be used, but usually, an artificial neural network (ANN) is used. ANNs are comprised of layers of neurons. More precisely a layer $k$ of $S$ neurons takes as input a vector $\vec{p}$ of length $R$. The output of the layer is a new vector $a$, wich then is the input for the next layer of the network. In a simple feed-forward layer output $a_j^k$ of the j-th entry in $a^k$, the output of the k-th layer of the network, is computed according to \eqref{eq:neuron}. The entries $w_{i,j}^k$ of the matrix $\vec{W^k}$ are called the weights of the layer and the entries $b_j^k$ of the vector $\vec{b}^k$ are called its bias. $f$ is called the activation function, which can be chosen freely, but typical choices include the hyperbolic tangent (tanh), the sigmoid-function ($\sigma$) or the rectified linear unit ($\mathrm{relu}$) function. A small overview over some of the key features these functions is given in \autoref{tab:activations}. Thus a network of two layers with $\tanh$ as an activation function describes the function given in \eqref{eq:network}, with $\vec{p}$  being the input to the network and $\vec{a}$ its output and the activation function being applied element-wise to the vectors. \cite[p. 2-2 - 2-12]{demuth_neural_2014}.
+\begin{align}
+	a_j^k &= f(w_{i,j}^k p^k_i + b_j^k) \label{eq:neuron} \\
+	\vec{a} &= \vec{\tanh} (\vec{b^1} + \vec{W^1} \cdot \vec{\tanh}( \vec{b^0} + \vec{W^0} \cdot \vec{p} ) \label{eq:network}
+\end{align}
+
+\begin{table}
+	\centering
+	\caption{Activation functions commonly used in neural network}
+	\begin{tabular}{c|c|c|c}
+		\hline \hline
+		Name & Domain & Range & Definition \\
+		\hline
+		$\tanh$ & $ (-\infty, + \infty)$ & $(-1, -1)$ & $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^-x}$ \\
+		\hline
+		$\sigma$ & $(-\infty, + \infty)$ & $(0, -1 )$ & $\sigma(x) = \frac{1}{1 + e^{-x}} $ \\ \hline
+		$\mathrm{relu}$ & $(-\infty, + \infty)$ & $[0, +\infty)$  & $\mathrm{relu}(x) = \max(x,0)$ \\\hline \hline
+	\end{tabular}\label{tab:activations}
+\end{table}
+\subsection{Recurrent neural networks}
+It is obvious that a feed-forward network only produces an output influenced by the current activation, there can be no influence of previous activations for example in a time-series. Yet there exist many applications for which such a feature would be useful, for example the field of natural language processing \cite{ghosh_contextual_2016} or transient physical processes. This led to the development of recurrent neural networks, in which the network includes has a hidden state, which is preserved. Especially the development of the long short-term memory (lstm)  cell has had great impact on the success of recurrent neural networks due to its ability to preserve hidden states over a longer period of time \cite{hochreiter_long_1997}. An lstm layer consists of one or multiple cells, with the input being the entire or parts of the activation. Each cell passes a vector called the cell state $\vec{c}$ as well as its output $\vec{a}$ to itself in the next time step. Thus a cell has as inputs at time $t$ the cell state and output of the previous time step, $\vec{c}_{t-1}$ and $\vec{a}_{t-1}$, as well as the current activation $\vec{p}_t$. On the inside, the cell consists of a forget-gate, an input-gate and an output-gate. The forget-gate determines the influence of the cell-state, the input-gate determines the influence of the current time-step on the cell-state. The output-gate then computes the output based on the updated cell-state.
+\begin{figure}
+	\input{pics/lstm.pdf_tex}
+\end{figure} 
+
