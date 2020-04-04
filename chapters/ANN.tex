@@ -38,7 +38,8 @@ The policy gradient methods differ now only in the performance measure. The firs
 While this algorithm makes a computation possible, it is inefficient. Therefore newer methods have been devised such as the Trust Region Policy Optimization (TRPO) \cite{schulman_trust_2017} and the Proximal Policy Optimization (ppo) \cite{schulman_proximal_2017}. They are closely related and both propose a surrogate performance measure that limits the size of the gradient to ensure monotonic improvement in the case of TRPO and a close approximate in the case of ppo. However, the computation of the surrogate in ppo is simpler and more efficient, which helped policy gradient methods to become one of the most used algorithms in continuous control problems. One version of the surrogate performance measure, which is also referred to as objective, is given in \eqref{eq:object_ppo}. The probability ratio $r_t$ compares the policy after the update to the policy before the update. Therefore $\pi_{\vec{\theta}}$ has to be approximated. $a_\pi(A_t \vert S_t)$ is an estimator of the advantage function, which is defined as $a_\pi(A_t \vert S_t) = q_\pi(A_t \vert S_t) - v_\pi(S_t)$. This estimator also has to be found, however, this is a regular optimization problem, which can be solved via SGD or Adam.
 \begin{align}
 	r_t(\vec{\theta}) &\doteq \frac{\pi_{\vec{\theta}}(A_t \vert S_t)}{\pi_{\vec{\theta}_{old}} (A_t \vert S_t)} \\
-	J &\doteq \mathrm{E}_\pi \left[\min \left(r_t(\vec{\theta}) a_\pi(A_t \vert S_t), \mathrm{clip}(r_t(\vec{\theta}), 1- \epsilon, 1+\epsilon) a_\pi(A_t \vert S_t) \right) \right] \label{eq:object_ppo}
+	J &\doteq \mathrm{E}_\pi \left[\min \left(r_t(\vec{\theta}) a_\pi(A_t \vert S_t), \mathrm{clip}(r_t(\vec{\theta}), 1- \epsilon, 1+\epsilon) a_\pi(A_t \vert S_t) \right) \right] \label{eq:object_ppo} \\
+			\boldsymbol{\mathrm{a}}
 \end{align}
 In addition to the ratio probability clipping, other regularizations can be added to the objective function, for example an $l_2$ regularization, that adds a penalty proportional to the size of $\vec{\theta}$.
 
@@ -68,6 +69,8 @@ In the section above, a way to update parameters of the policy or value function
 \subsection{Recurrent neural networks}
 It is obvious that a feed-forward network only produces an output influenced by the current activation, there can be no influence of previous activations for example in a time-series. Yet there exist many applications for which such a feature would be useful, for example the field of natural language processing \cite{ghosh_contextual_2016} or transient physical processes. This led to the development of recurrent neural networks, in which the network includes has a hidden state, which is preserved. Especially the development of the long short-term memory (lstm)  cell has had great impact on the success of recurrent neural networks due to its ability to preserve hidden states over a longer period of time \cite{hochreiter_long_1997}. An lstm layer consists of one or multiple cells, with the input being the entire or parts of the activation. Each cell passes a vector called the cell state $\vec{c}$ as well as its output $\vec{a}$ to itself in the next time step. Thus a cell has as inputs at time $t$ the cell state and output of the previous time step, $\vec{c}_{t-1}$ and $\vec{a}_{t-1}$, as well as the current activation $\vec{p}_t$. On the inside, the cell consists of a forget-gate, an input-gate and an output-gate. The forget-gate determines the influence of the cell-state, the input-gate determines the influence of the current time-step on the cell-state. The output-gate then computes the output based on the updated cell-state.
 \begin{figure}
+	\centering
+	\def\svgwidth{0.5 \textwidth}
 	\input{pics/lstm.pdf_tex}
 \end{figure} 
 
