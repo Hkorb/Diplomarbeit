@@ -4,7 +4,7 @@
 % \documentclass[a4paper,11pt,oneside,ngerman,bibliography=totoc]{scrreprt}
 
 \input{Style.tex}	% Formatierung
-\addbibresource{bib.bib}
+\addbibresource{bibliography/bibliography.bib}
 
 \begin{document}
 
@@ -12,7 +12,7 @@
 	\graphicspath{{pics/}}	% Grafikpfad
 	
 	\pagestyle{empty}
-	\include{chapters/Titelseite}
+	\include{chapters/Titlepage}
 	\cleardoublepage
 	\cleardoublepage
 	\include{chapters/Abstract}
@@ -30,9 +30,10 @@
 	
 	\pagenumbering{arabic}
 	\include{chapters/Nomenclature}
-	\include{chapters/windturbine}
-	\include{chapters/LBM}
-	\include{chapters/ANN}
+	\chapter{Theoretical Background}
+	\include{chapters/theory/windturbine}
+	\include{chapters/theory/ANN}
+	\include{chapters/theory/LBM}
 % 	\setlength{\abovedisplayskip}{16pt}		% größerer Abstand vor Equations
 % 	\setlength{\belowdisplayskip}{16pt}		% größerer Abstand nach Equations
   \clearpage
