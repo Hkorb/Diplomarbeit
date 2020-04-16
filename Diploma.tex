@@ -30,10 +30,13 @@
 	
 	\pagenumbering{arabic}
 	\include{chapters/Nomenclature}
+	\cleardoublepage
 	\chapter{Theoretical Background}
-	\include{chapters/theory/windturbine}
-	\include{chapters/theory/ANN}
-	\include{chapters/theory/LBM}
+	\input{chapters/theory/windturbine}
+	\input{chapters/theory/ANN}
+	\input{chapters/theory/LBM}
+	\chapter{Setup of Simulation}
+	\input{chapters/setup/control}
 % 	\setlength{\abovedisplayskip}{16pt}		% größerer Abstand vor Equations
 % 	\setlength{\belowdisplayskip}{16pt}		% größerer Abstand nach Equations
   \clearpage

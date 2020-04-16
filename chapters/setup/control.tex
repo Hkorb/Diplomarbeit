@@ -1,0 +1,51 @@
+\section{interaction}
+
+\begin{figure}
+	\centering
+	\begin{sequencediagram}
+		\newthread{elbe}{Elbe}{}
+		\newinst{alm0}{ALM0:ActuatorLine}{}
+		\newinst{turb0}{Turbine0:Turbine}{}
+		\newinst{probe}{Probe0:Probe}{}
+		\newinst{ctrl}{Controller:ANNController}
+		
+		\begin{callself}{elbe}{doTimestep()}{}
+			\begin{call}{elbe}{visit()}{alm0}{}
+				\begin{call}{alm0}{getState()}{turb0}{$\Omega, \Theta$}\end{call}
+				\begin{callself}{alm0}{calcTorque()}{$T_{aero}$}\end{callself}
+				\begin{call}{alm0}{setTorque($T_{aero}$)}{turb0}{}\end{call}
+			\end{call}
+			\begin{call}{elbe}{visit()}{probe}{}
+				\begin{callself}{probe}{setVelocity()}{}\end{callself}
+			\end{call}
+			\begin{call}{elbe}{visit()}{ctrl}{}
+				\begin{callself}{ctrl}{update()}{}
+					\begin{call}{ctrl}{update($T_{gen}$)}{turb0}{}
+						\begin{callself}{turb0}{updateOmega()}{$\Omega$}\end{callself}
+						\begin{callself}{turb0}{updateAzimuth()}{$\Theta$}\end{callself}
+					\end{call}
+				\end{callself}
+			\end{call}
+		\end{callself}
+	\end{sequencediagram}
+	\caption{UML sequence diagram of simulation timestep.}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{sequencediagram}
+		\newthread{ctrl}{Controller:ANNController}
+		\newinst{env}{Environment:TurbineEnvironment}{}
+		\newinst{agent}{Agent:PPOAgent}
+		\begin{callself}{ctrl}{update()}{}
+			\begin{callself}{ctrl}{filterAction()}{filteredAction}\end{callself}
+			\begin{call}{ctrl}{update(action)}{env}{observation, reward}
+				\begin{callself}{env}{setAction()}{}\end{callself}
+				\begin{callself}{env}{calcReward()}{reward}\end{callself}
+				\begin{callself}{env}{checkIfTerminated()}{terminated}\end{callself}
+			\end{call}
+			\begin{call}{ctrl}{apply()}{agent}{action}\end{call}
+		\end{callself}
+	\end{sequencediagram}
+	\caption{UML sequence diagram of update step of controller.}
+\end{figure}
