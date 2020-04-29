@@ -78,15 +78,14 @@ It is obvious that a feed-forward network only produces an output influenced by 
 \subsubsection{Training of a Neural Network}
 To use a neural network as policy in a policy gradient method algorithm, a way to compute the gradient of the objective $J$ has to be found. The parameters of the policy are the weights and biases of the network, therefore the partial derivatives of $J$ with respect to all weights and biases have to be found. Both described policy gradient methods express the objective gradient as a funtion $j$ of the gradient of the policy as shown in \eqref{eq:grad_f}. Under the assumption that each entry in the action vector $\vec{A}$ is a statistically indepedent random variable with the probability density function $pdf$, parameterized by $\mu_i$, the policy can be written as \eqref{eq:policy}. Thus the gradient term is \eqref{eq:logit}. \cite[p. 335]{sutton_reinforcement_2018}\\
 If $\mu_i$ is the output of a $K$-layered network, it can be written as \eqref{eq:backprop1}.
-Computing the gradient \eqref{eq:backprop2} can now be done efficiently via backpropagation. The name refers to the fact, that due to the chain rule, the gradient of a layer is easily expressed through the gradient of the previous layer. The sensitivity $s^k_{i,j}$ determines how sensible the action is to changes of this parameter. \cite[p.11-7 - 11-13]{demuth_neural_2014}
+Computing the gradient \eqref{eq:backprop2} can now be done efficiently via backpropagation. The name refers to the fact, that due to the chain rule, the gradient of a layer is easily expressed through the gradient of the previous layer, which allows for an efficient computation. The sensitivity $s^k_{i,j}$ determines how sensible the action is to changes of this parameter. \cite[p.11-7 - 11-13]{demuth_neural_2014}
 \begin{align}
 	\nabla_{\vec{\theta}} J &= j\left(\frac{\nabla_{\vec{\theta}}\pi_{\vec{\theta}}(\vec{A}|\vec{S})} {\pi_{\vec{\theta}}(\vec{A}|\vec{S})}\right) \label{eq:grad_f}\\
-	\pi_{\vec{\theta}}(\vec{A}|\vec{S}) &= \prod_i pdf(A_i, \mu_i(S_m,\vec{\theta})) \label{eq:policy}\\	\frac{\nabla_{\vec{\theta}}\pi_{\vec{\theta}}(\vec{A}|\vec{S})} {\pi_{\vec{\theta}}(\vec{A}|\vec{S})} &= \prod_i \frac{\partial pdf(A_i, \mu_i(S_m,\vec{\theta}))}{\partial \mu_i(S_m, \vec{\theta})} \frac{\nabla_{\vec{\theta}} \mu_i(S_m,\vec{\theta})}{pdf(A_i, \mu_i(S_m, \vec{\theta}))} \label{eq:logit}\\
-	\mu_i(S_m) &= f^K ( b^K_i+w^K_{i,j} f^{K-1} (...f^{0}(b^0_l + w^0_{l,m}S_m)...)) \label{eq:backprop1} \\
-	\nabla_{\vec{\theta}} \mu_i |_{S_m} &= \left[\left. \frac{\partial f^k}{\partial b^k_i} \right|_{S_m}, 
-	\left.\frac{\partial f^k}{\partial w^k_{i,j}}\right|_{S_m} \right]^T \label{eq:backprop2}\\
-	s^K_{i,j} &= \frac{\partial f^K(x)}{\partial x} \delta_{i,j}, \quad s^{k}_{i,j} = s^{k+1}_{i,l} w^k_{l,j} \frac{\partial f^k(x)}{\partial x} \\
-	p^{k+1}_i(S_m) &= f^{k}(b^{k}_i + w^{k}_{i,j} p^{k}_j(S_m)), \quad p^0_i = S_i \\
-	\left. \frac{\partial \mu_i}{\partial b^k_j}\right|_{S_m} &= s^k_{i,j} \\
-	\left. \frac{\partial \mu_i}{\partial w^k_{j,l}} \right|_{S_m} &= s^k_{i,j} p^k_l(S_m)
+	\pi_{\vec{\theta}}(\vec{A}|\vec{S}) &= \prod_i pdf(A_i, \mu_i(\vec{S},\vec{\theta})) \label{eq:policy}\\	\frac{\nabla_{\vec{\theta}}\pi_{\vec{\theta}}(\vec{A}|\vec{S})} {\pi_{\vec{\theta}}(\vec{A}|\vec{S})} &= \prod_i \frac{\partial pdf(A_i, \mu_i(\vec{S},\vec{\theta}))}{\partial \mu_i(\vec{S}, \vec{\theta})} \frac{\nabla_{\vec{\theta}} \mu_i(\vec{S},\vec{\theta})}{pdf(A_i, \mu_i(\vec{S}, \vec{\theta}))} \label{eq:logit}\\
+	\mu_i(\vec{S}, \vec{\theta}) &= f^K ( b^K_i+w^K_{i,j} f^{K-1} (...f^{0}(b^0_l + w^0_{l,m}S_m)...)) \label{eq:backprop1} \\
+	\nabla_{\vec{\theta}} \mu_i |_{\vec{S}} &= \left[\left. \frac{\partial \mu_i}{\partial b^k_j} \right|_{\vec{S}}, 
+	\left.\frac{\partial \mu_i}{\partial w^k_{j,l}}\right|_{\vec{S}} \right]^T \label{eq:backprop2}\\
+	x^k_i &= b^{k}_i + w^{k}_{i,j}p^k_j, \quad p^{k+1}_i = f^k(x^k_i), \quad p^0_i = S_i \\
+	s^K_{i,j} &= \left.\frac{\partial f^K(x)}{\partial x}\right|_{x^K_i} \delta_{i,j}, \quad \left.s^{k}_{i,j} = s^{k+1}_{i,l} w^k_{l,j} \frac{\partial f^k(x)}{\partial x}\right|_{x^k_i} \\
+	\left. \frac{\partial \mu_i}{\partial b^k_j}\right|_{\vec{S}} &= s^k_{i,j}, \quad \left. \frac{\partial \mu_i}{\partial w^k_{j,l}} \right|_{\vec{S}} = s^k_{i,j} p^k_l
 \end{align}
