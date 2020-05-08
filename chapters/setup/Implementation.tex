@@ -1,0 +1,17 @@
+\section{Implementation}
+Environments:
+	-BEM
+		-calc non dimensionalized lookup table with 4000 thousand points for torque and linear interpolation in between
+	-elbe
+		- cumulant LBM (d3q27)
+		- multi refinement
+		- multi domain
+		- actuator line
+RL
+	- based on tf-agents
+	- ppo agent
+		- neural network as policy
+		- feed forward and lstm, multiple timestep
+	- multi environment
+		- turbines and probes for actions and observations
+	
