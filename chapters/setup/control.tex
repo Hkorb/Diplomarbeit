@@ -1,36 +1,3 @@
-\section{interaction}
-
-\begin{figure}
-	\centering
-	\begin{sequencediagram}
-		\newthread{elbe}{Elbe}{}
-		\newinst{alm0}{ALM0:ActuatorLine}{}
-		\newinst{turb0}{Turbine0:Turbine}{}
-		\newinst{probe}{Probe0:Probe}{}
-		\newinst{ctrl}{Controller:ANNController}
-		
-		\begin{callself}{elbe}{doTimestep()}{}
-			\begin{call}{elbe}{visit()}{alm0}{}
-				\begin{call}{alm0}{getState()}{turb0}{$\Omega, \Theta$}\end{call}
-				\begin{callself}{alm0}{calcTorque()}{$T_{aero}$}\end{callself}
-				\begin{call}{alm0}{setTorque($T_{aero}$)}{turb0}{}\end{call}
-			\end{call}
-			\begin{call}{elbe}{visit()}{probe}{}
-				\begin{callself}{probe}{setVelocity()}{}\end{callself}
-			\end{call}
-			\begin{call}{elbe}{visit()}{ctrl}{}
-				\begin{callself}{ctrl}{update()}{}
-					\begin{call}{ctrl}{update($T_{gen}$)}{turb0}{}
-						\begin{callself}{turb0}{updateOmega()}{$\Omega$}\end{callself}
-						\begin{callself}{turb0}{updateAzimuth()}{$\Theta$}\end{callself}
-					\end{call}
-				\end{callself}
-			\end{call}
-		\end{callself}
-	\end{sequencediagram}
-	\caption{UML sequence diagram of simulation timestep.}
-\end{figure}
-
 \begin{figure}
 	\centering
 	\begin{sequencediagram}
@@ -48,4 +15,5 @@
 		\end{callself}
 	\end{sequencediagram}
 	\caption{UML sequence diagram of update step of controller.}
+	\label{fig:controller}
 \end{figure}

@@ -41,12 +41,9 @@ While this algorithm makes a computation possible, it is inefficient. Therefore 
 	J &\doteq \mathrm{E}_\pi \left[\min \left(r_t(\vec{\theta}) a_\pi(\vec{A}_t \vert \vec{S}_t), \mathrm{clip}(r_t(\vec{\theta}), 1- \epsilon, 1+\epsilon) a_\pi(\vec{A}_t \vert \vec{S}_t) \right) \right] \label{eq:object_ppo}
 \end{align}
 In addition to the ratio probability clipping, other regularizations can be added to the objective function, for example an $l_2$ regularization, that adds a penalty proportional to the size of $\vec{\theta}$.
-
-
-
 \subsection{Artificial Neural Networks}
 \subsubsection{Feed-forward networks}
-In the section above, a way to update parameters of the policy or value function were described, however, no description of the function itself was given. In principal any function with a set of parameters can be used, but usually, an artificial neural network (ANN) is used. ANNs are comprised of layers of neurons. More precisely a layer $k$ of $\S$ neurons takes as input a vector $\vec{p}$ of length $R$. The output of the layer is a new vector $\vec{a}^k$, wich then is the input for the next layer of the network. In a simple feed-forward layer $a_j^k$ is computed according to \eqref{eq:neuron}. The entries $w_{i,j}^k$ of the matrix $\vec{W^k}$ are called the weights of the layer and the entries $b_j^k$ of the vector $\vec{b}^k$ are called its bias. $f$ is called the activation function, which can be chosen freely, but typical choices include the hyperbolic tangent (tanh), the sigmoid-function ($\sigma$) or the rectified linear unit ($\mathrm{relu}$) function. A small overview over some of the key features of these functions is given in \autoref{tab:activations}. Thus a network of two layers with $\tanh$ as an activation function describes the function given in \eqref{eq:network}, with $\vec{p}$  being the input to the network and $\vec{a}$ its output and the activation function being applied element-wise to the vectors. \cite[p. 2-2 - 2-12]{demuth_neural_2014}.
+In the section above, a way to update parameters of the policy or value function were described, however, no description of the function itself was given. In principal any function with a set of parameters can be used, but usually, an artificial neural network (ANN) is used. ANNs are comprised of layers of neurons. More precisely a layer $k$ of $\S$ neurons takes as input a vector $\vec{p}$ of length $R$. The output of the layer is a new vector $\vec{a}^k$, wich then is the input for the next layer of the network. In a simple feed-forward layer $a_j^k$ is computed according to \eqref{eq:neuron}. The entries $w_{i,j}^k$ of the matrix $\vec{W^k}$ are called the weights of the layer and the entries $b_j^k$ of the vector $\vec{b}^k$ are called its bias. $f$ is called the activation function, which can be chosen freely, but typical choices include the hyperbolic tangent ($\mathrm{\tanh}$), the sigmoid-function ($\sigma$) or the softplus ($\mathrm{softplus}$) function. A small overview over some of the key features of these functions is given in \autoref{tab:activations}. One desirable property for activation functions is that it is differentiable at least once in the entire domain. Thus a network of two layers with $\tanh$ as an activation function describes the function given in \eqref{eq:network}, with $\vec{p}$  being the input to the network and $\vec{a}$ its output and the activation function being applied element-wise to the vectors. \cite[p. 2-2 - 2-12]{demuth_neural_2014}.
 \begin{align}
 	a_j^k &= f(w_{i,j}^k p^k_i + b_j^k) \label{eq:neuron} \\
 	\vec{a} &= \vec{\tanh} (\vec{b^1} + \vec{W^1} \cdot \vec{\tanh}( \vec{b^0} + \vec{W^0} \cdot \vec{p} ) \label{eq:network}
@@ -55,14 +52,16 @@ In the section above, a way to update parameters of the policy or value function
 \begin{table}
 	\centering
 	\caption{Activation functions commonly used in neural network}
-	\begin{tabular}{c|c|c|c}
+	\begin{tabular}{c|c|c|c|c}
 		\hline \hline
-		Name & Domain & Range & Definition \\
+		Name & Domain & Range & Definition & Derivative \\
 		\hline
-		$\tanh$ & $ (-\infty, + \infty)$ & $(-1, -1)$ & $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^-x}$ \\
+		$\tanh$ & $ (-\infty, + \infty)$ & $(-1, -1)$ & $\tanh(x) = (e^x - e^{-x})(e^x + e^{-x})^{-1}$ & $1- \tanh^2(x)$\\
 		\hline
-		$\sigma$ & $(-\infty, + \infty)$ & $(0, -1 )$ & $\sigma(x) = \frac{1}{1 + e^{-x}} $ \\ \hline
-		$\mathrm{relu}$ & $(-\infty, + \infty)$ & $[0, +\infty)$  & $\mathrm{relu}(x) = \max(x,0)$ \\\hline \hline
+		$\sigma$ & $(-\infty, + \infty)$ & $(0, -1 )$ & $\sigma(x) = (1 + e^{-x})^{-1} $ & $\sigma(x)\sigma(-x)$\\ 
+		\hline 
+		$\mathrm{softplus}$&  $(-\infty, + \infty)$ & $(0, +\infty)$  & $\mathrm{softplus}(x) = \ln(e^x + 1)$ & $\sigma(x)$\\
+		\hline \hline
 	\end{tabular}\label{tab:activations}
 \end{table}
 \subsubsection{Recurrent neural networks}
