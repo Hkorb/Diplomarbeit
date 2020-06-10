@@ -14,7 +14,7 @@
    viewBox="0 0 184.73819 107.5267"
    version="1.1"
    id="svg7074"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="lstm.svg">
   <defs
      id="defs7068">
@@ -131,18 +131,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6568542"
-     inkscape:cx="334.22078"
-     inkscape:cy="53.343776"
+     inkscape:zoom="0.99999999"
+     inkscape:cx="223.39648"
+     inkscape:cy="181.16626"
      inkscape:document-units="mm"
      inkscape:current-layer="layer2"
      showgrid="true"
      inkscape:snap-grids="true"
      inkscape:snap-to-guides="true"
-     inkscape:window-width="1850"
+     inkscape:window-width="1848"
      inkscape:window-height="1016"
-     inkscape:window-x="70"
-     inkscape:window-y="27"
+     inkscape:window-x="72"
+     inkscape:window-y="1107"
      inkscape:window-maximized="1"
      showguides="false">
     <inkscape:grid
@@ -363,7 +363,7 @@
          id="tspan103242"
          x="19.843761"
          y="131.63541"
-         style="font-size:4.58611107px;stroke-width:0.26458332">$\vec{c}_{t-1}$</tspan></text>
+         style="font-size:4.58611107px;stroke-width:0.26458332">$\vec{\mathsf{c}}_{t-1}$</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -374,7 +374,7 @@
          id="tspan103246"
          x="19.843761"
          y="199.10416"
-         style="font-size:4.58611107px;stroke-width:0.26458332">$\vec{a}_{t-1}$</tspan></text>
+         style="font-size:4.58611107px;stroke-width:0.26458332">$\vec{\mathsf{y}}_{t-1}$</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -385,7 +385,7 @@
          id="tspan103250"
          x="173.30209"
          y="199.10416"
-         style="font-size:4.58611107px;stroke-width:0.26458332">$\vec{a}_t$</tspan></text>
+         style="font-size:4.58611107px;stroke-width:0.26458332">$\vec{\mathsf{y}}_t$</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -396,7 +396,7 @@
          id="tspan103254"
          x="173.30209"
          y="131.63541"
-         style="font-size:4.58611107px;stroke-width:0.26458332">$\vec{c}_t$</tspan></text>
+         style="font-size:4.58611107px;stroke-width:0.26458332">$\vec{\mathsf{c}}_t$</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -517,7 +517,7 @@
          id="tspan103323"
          x="62.190392"
          y="214.90579"
-         style="stroke-width:0.26458332;font-size:4.58611111px">$\vec{p}_t$</tspan></text>
+         style="font-size:4.58611107px;stroke-width:0.26458332">$\vec{\mathsf{z}}_t$</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"

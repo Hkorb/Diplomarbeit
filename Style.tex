@@ -37,6 +37,8 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows}
 \usepgflibrary{arrows}
+
+
 \usepackage{pgf-umlsd}
 \usepackage{algorithm}
 \usepackage{algorithmic}
@@ -69,9 +71,8 @@
 
 % Seitenlayout, Seitenkopf und Fuss gestalten
 \setlength{\topmargin}{-15mm}       % Abstand des Kopfes zu der Seitenoberkante
-\setlength{\footheight}{17pt}
 
-\usepackage[outer=20mm,inner=30mm,bottom=40mm,headsep=10mm,footskip=12mm,head=17pt]{geometry}
+\usepackage[outer=20mm,inner=30mm,bottom=40mm,headsep=10mm,footskip=12mm]{geometry}
 % \addtokomafont{pagehead}{\scshape}
 % \pagestyle{headings}
 
@@ -91,8 +92,7 @@
 
 % Literaturverzeichnis
 %\usepackage{cite}
-\usepackage[backend=bibtex8, style=numeric, giveninits=true, doi=false, isbn=false, eprint=false]{biblatex}
-\renewbibmacro{in:}{}
+\usepackage[backend=biber, style=trad-unsrt, giveninits=true, doi=false, isbn=false, eprint=false, url=false, arxiv=pdf, sorting=nyt, maxnames=3, date=year]{biblatex}
 \usepackage{csquotes}
 %\usepackage{bibgerm}
 \renewcommand{\pnumfont}{\sffamily}                     % Seitenzahlen serifenlos
@@ -103,8 +103,7 @@
 \renewcommand{\cftsubsecfont}{\sffamily}
 \renewcommand{\cftchapdotsep}{4.1}
 \renewcommand*{\chapterheadstartvskip}{\vspace*{-1cm}}
+
 \renewcommand{\equationautorefname}{Eq.}
-%\usepackage{comment}
-%\excludecomment{figure}
-%\let\endfigure\relax
 \usepackage{pdflscape}
+\def\algorithmautorefname{Algorithm}

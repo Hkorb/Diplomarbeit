@@ -56,14 +56,14 @@
     \put(0,0){\includegraphics[width=\unitlength,page=1]{airfoil.pdf}}%
     \put(0.13580823,0.37692437){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.26215498\unitlength}\raggedright $\vec{V}_0$\end{minipage}}}%
     \put(0.14711711,0.00646752){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega r$ \end{tabular}}}}%
-    \put(0.01534547,0.00603289){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\theta$\end{tabular}}}}%
-    \put(0.70131592,0.39091591){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$z$\end{tabular}}}}%
-    \put(0.01898207,0.33604618){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\vec{w_i}$\end{tabular}}}}%
+    \put(0.01534547,0.00603289){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Theta$\end{tabular}}}}%
+    \put(0.70131592,0.39091591){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x$\end{tabular}}}}%
+    \put(0.01898207,0.33604618){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\vec{V}_i$\end{tabular}}}}%
     \put(0.04183878,0.24317966){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\vec{V}_{rel}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{airfoil.pdf}}%
     \put(0.19068524,0.1556831){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi$\end{tabular}}}}%
     \put(0.29262295,0.14876793){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\alpha$\end{tabular}}}}%
-    \put(0.30146915,0.06181568){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\gamma$\end{tabular}}}}%
+    \put(0.30146915,0.06181568){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Phi_l$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{airfoil.pdf}}%
     \put(0.81273036,0.06756266){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\vec{F}_t$\end{tabular}}}}%
     \put(0.69875821,0.25583057){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\vec{F}_n$\end{tabular}}}}%

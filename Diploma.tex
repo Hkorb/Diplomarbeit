@@ -23,28 +23,26 @@
 	\vspace*{-2cm} 
 	\tableofcontents
 	\cleardoublepage
-	\pagestyle{scrheadings}
-
-	
-	\cleardoublepage
-	
-	\pagenumbering{arabic}
 	\include{chapters/Nomenclature}
+	
 	\cleardoublepage
+	\pagestyle{scrheadings}
+	\pagenumbering{arabic}
 	\chapter{Theoretical Background}
 	\input{chapters/theory/windturbine}
 	\input{chapters/theory/ANN}
 	\input{chapters/theory/LBM}
 	\chapter{Setup of Simulation}
 	\input{chapters/setup/Implementation}
+	\input{chapters/setup/setup}
 % 	\setlength{\abovedisplayskip}{16pt}		% größerer Abstand vor Equations
 % 	\setlength{\belowdisplayskip}{16pt}		% größerer Abstand nach Equations
-  \clearpage
-  \renewcommand{\bibname}{Bibliography}
-  \printbibliography
-  \cleardoublepage
+	\clearpage
+	\renewcommand{\bibname}{Bibliography}
+	\printbibliography
+	\cleardoublepage
 	\appendix
 	\include{chapters/Appendix}
-    \include{chapters/Selbst}
+	\include{chapters/Selbst}
 
 \end{document}

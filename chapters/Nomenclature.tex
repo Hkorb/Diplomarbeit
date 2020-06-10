@@ -1,82 +1,272 @@
 \addchap{Nomenclature}
-
-\begin{tabular}{p{5cm}p{4cm}p{5cm}}
-Latin Symbols & Unit       & Description      \\ \hline
-    $\vec{c}$               & \SI{}{m/s}    & Constant Velocity vector \\
-    $c$                     & \SI{}{m/s}    & Constant Velocity \\
-    $f$						& \SI{}{kgs^3/m^6} & Distribution function\\
-    $E$                     & \SI{}{J/m^3}  & Energy Density \\
-    $H$                     & \SI{}{m}      & Channel half-height \\
-    $\mathrm{Ma}$			&	- 			& Mach Number \\
+%lower case, upper case
+%normal, mathsf, mathrm, mathit
+%vector, scalar
+%end, superscripts, subscripts, additional characters
+%latin, greek
+\begin{longtable}{p{5cm}p{4cm}p{5cm}}
+	Latin Symbols 			& Unit      	& Description      \\ \hline
+%	$\vec{a}$ 				& \SI{}{-}		& \\
+	$a$						& \SI{}{-}		& Axial interference / induction factor \\
+	$a'$					& \SI{}{-}		& Tangential interference / induction factor \\
+	$\vec{\mathsf{a}}$		& \SI{}{-}		& Action vector \\
+%	$\mathsf{a}$ 			& \SI{}{-}		& \\
+	$A$						& \SI{}{m^2}	& Area \\
+	$\vec{\mathsf{A}}$		& \SI{}{-}		& Action vector \\
+%	$\vec{b}$ 				& \SI{}{-}		& \\
+	$b$						& \SI{}{-}		& Weights \\
+	$\vec{\mathsf{b}}$		& \SI{}{-}		& Vector of biases \\
+%	$\mathsf{b}$ 			& \SI{}{-}		& \\
+    $\vec{c}$               & \SI{}{m/s}    & Constant velocity vector \\
+    $c$                     & \SI{}{m/s}    & Constant velocity \\
+   	$\vec{\mathsf{c}}$		& \SI{}{-}		& Cell state vector \\
+%  	$\mathsf{c}$ 			& \SI{}{-}		& \\
+    $C$						& \SI{}{-}		& Coefficient \\
+    $C_{\alpha, \beta, \gamma}$& \SI{}{-}	& Cumulant \\
+%    $\vec{d}$ 				& \SI{}{-}		& \\
+%    $d$ 					& \SI{}{-}		& \\
+%    $\vec{\mathsf{d}}$		& \SI{}{-}		& \\
+%    $\mathsf{d}$ 			& \SI{}{-}		& \\
+    $D$						& \SI{}{m}		& Rotor diameter \\
+    $\vec{e}$				& \SI{}{m}		& Basis vector \\
+%    $e$ 					& \SI{}{-}		& \\
+%    $\vec{\mathsf{e}}$		& \SI{}{-}		& \\
+%    $\mathsf{e}$ 			& \SI{}{-}		& \\
+    $E$                     & \SI{}{J/m^3}  & Energy density \\
+    $\mathrm{E}$			& \SI{}{-}		& Expected value \\
+%    $\vec{f}$ 				& \SI{}{-}		& \\
+    $f$						& \SI{}{kgs^3/m^6} & Distribution function \\
+%    $\vec{\mathsf{f}}$		& \SI{}{-}		& \\
+    $\mathsf{f}$			& \SI{}{-}		& Activation function \\
+    $\vec{F}$				& \SI{}{N}		& Force \\
+    $F$						& \SI{}{-}		& Distribution function in frequency space \\
+%    $\vec{g}$ 				& \SI{}{-}		& \\
+%    $g$ 					& \SI{}{-}		& \\
+%    $\vec{\mathsf{g}}$		& \SI{}{-}		& \\
+%    $\mathsf{g}$ 			& \SI{}{-}		& \\
+    $\mathsf{G}$			& \SI{}{-}		& Return \\
+%    $\vec{h}$ 				& \SI{}{-}		& \\
+%    $h$ 					& \SI{}{-}		& \\
+%    $\vec{\mathsf{h}}$		& \SI{}{-}		& \\
+%    $\mathsf{h}$ 			& \SI{}{-}		& \\
+%    $\vec{i}$ 				& \SI{}{-}		& \\
+%    $i$ 					& \SI{}{-}		& \\
+%    $\vec{\mathsf{i}}$		& \SI{}{-}		& \\
+%    $\mathsf{i}$ 			& \SI{}{-}		& \\
+    $I$						& \SI{}{kg m^2} & Moment of inertia \\
+%    $\vec{j}$ 				& \SI{}{-}		& \\
+%    $j$ 					& \SI{}{-}		& \\
+%    $\vec{\mathsf{j}}$		& \SI{}{-}		& \\
+%    $\mathsf{j}$ 			& \SI{}{-}		& \\
+    $\mathsf{J}$			& \SI{}{-}		& Performance measure / Objective \\
+%    $\vec{k}$ 				& \SI{}{-}		& \\
+    $k$						& \SI{}{-}		& Central moment \\
+%    $\vec{\mathsf{k}}$		& \SI{}{-}		& \\
+%    $\mathsf{k}$ 			& \SI{}{-}		& \\
+    $\mathsf{K}$			& \SI{}{-}		& Number of layers \\
+%    $\vec{l}$ 				& \SI{}{-}		& \\
+%    $l$ 					& \SI{}{-}		& \\
+%    $\vec{\mathsf{l}}$		& \SI{}{-}		& \\
+%    $\mathsf{l}$ 			& \SI{}{-}		& \\
+    $L$						& \SI{}{m}		& Length \\
+%    $\vec{m}$ 				& \SI{}{-}		& \\
+%    $m$ 					& \SI{}{-}		& \\
+    $M_{aero}$				& \SI{}{Nm}		& Aerodynamic torque \\
+    $M_{gen}$				& \SI{}{Nm}		& Generator torque \\
+    $M_{\alpha, \beta, \gamma}$	& \SI{}{-}	& Raw moment \\
+%	$\vec{\mathsf{m}}$		& \SI{}{-}		& \\
+%	$\mathsf{m}$ 			& \SI{}{-}		& \\
+    $\mathsf{M}$			& \SI{}{-}		& Number of nodes in layer \\
+    $\mathrm{Ma}$			& \SI{}{-}		& Mach number \\
+    $\vec{n}$ 				& \SI{}{-}		& Normal vector \\
+%    $n$ 					& \SI{}{-}		& \\
+    $N_b$					& \SI{}{-}		& Number of blades \\
+    $N_{A,e}$				& \SI{}{-}		& Number of actions per episode \\
+    $N_{e,T}$				& \SI{}{-}		& Number of episodes per Training \\
+    $N_{t,A}$				& \SI{}{-}		& Number of timesteps per action \\
+%	$\vec{\mathsf{n}}$		& \SI{}{-}		& \\
+%	$\mathsf{n}$ 			& \SI{}{-}		& \\
+    $\mathsf{N}$			& \SI{}{-}		& Number of inputs into layer \\
+%    $\vec{p}$ 				& \SI{}{-}		& \\
     $p$                     & \SI{}{Pa}     & Pressure \\
-    $R$                     & \SI{}{J/kg/K} & Specific gas Constant \\
-    $\mathit{Re}$           &  -            & Reynolds Number \\
+%    $\vec{\mathsf{p}}$		& \SI{}{-}		& \\
+    $\mathsf{p}$			& \SI{}{-}		& State transition function \\
+    $pdf$					& \SI{}{-}		& Probability density function \\
+    $\mathsf{pr}$			& \SI{}{-}		& Probability ratio \\
+    $P$						& \SI{}{W}		& Power \\
+    $Pr$					& \SI{}{-}		& Probability \\
+%    $\vec{q}$ 				& \SI{}{-}		& \\
+%    $q$ 					& \SI{}{-}		& \\
+%    $\vec{\mathsf{q}}$		& \SI{}{-}		& \\
+    $\mathsf{q}$			& \SI{}{-}		& Action-value function \\
+%    $\vec{r}$ 				& \SI{}{-}		& \\
+    $r$						& \SI{}{m}		& Radius / radial coordinate \\
+    $r_f$					& \SI{}{-}		& Forget ratio \\
+%    $\vec{\mathsf{r}}$		& \SI{}{-}		& \\
+    $\mathsf{r}$			& \SI{}{-}		& Reward \\	
+    $\mathsf{r_p}$			& \SI{}{-}		& Probability ratio \\
+    $R$						& \SI{}{m}		& Rotor radius \\
+    $\hat{R}$               & \SI{}{J/kg/K} & Specific gas constant \\ 
+    $\mathsf{R}$			& \SI{}{-}		& Reward \\	
+%    $\mathit{Re}$           & \SI{}{-}      & Reynolds number \\
+%	$\vec{s}$ 				& \SI{}{-}		& \\
+    $s$						& \SI{}{-}		& Solidity \\
+    $\vec{\mathsf{S}}$		& \SI{}{-}		& State vector \\
+%    $\mathsf{s}$ 			& \SI{}{-}		& \\
+%    $\vec{t}$ 				& \SI{}{-}		& \\
     $t$                     & \SI{}{s}      & Time  \\
-    $T$                     & \SI{}{K}      & Temperature \\
-    $\vec{u}$               & \SI{}{m/s}    & Macroscopic Velocity Vector\\
-    $u$                     & \SI{}{m/s}    & Velocity in \newline streamwise Direction \\
-    $v$                     & \SI{}{m/s}    & Velocity in \newline wallnormal Direction \\    
-    $w$                     & \SI{}{m/s}    & Velocity in \newline spanwise Direction \\
+%    $\vec{\mathsf{t}}$		& \SI{}{-}		& \\
+    $\mathsf{t}$			& \SI{}{-}		& Sensitivity \\
+    $T$                     & \SI{}{N}      & Thrust force \\
+    $\hat{T}$				& \SI{}{K}		& Temperature \\
+    $\vec{u}$               & \SI{}{m/s}    & Macroscopic velocity vector \\
+    $u$                     & \SI{}{m/s}    & Streamwise velocity \\
+%    $\vec{\mathsf{u}}$		& \SI{}{-}		& \\
+%    $\mathsf{u}$ 			& \SI{}{-}		& \\
+    $\vec{v}$               & \SI{}{m/s}    & Macroscopic velocity vector \\
+    $v$                     & \SI{}{m/s}    & Wallnormal velocity \\    
+    $\mathsf{v}$			& \SI{}{-}		& Value function \\
+%    $\vec{\mathsf{v}}$		& \SI{}{-}		& \\
+    $\vec{V}$				& \SI{}{m/s}	& Wind Velocity \\
+    $V$						& \SI{}{m^3}	& Volume \\
+    $V_0$					& \SI{}{m/s}	& Mean wind speed \\
+%    $\vec{w}$ 				& \SI{}{-}		& \\
+    $w$                     & \SI{}{m/s}    & Streamwise velocity \\
+%    $\vec{\mathsf{w}}$		& \SI{}{-}		& \\
+%    $\mathsf{w}$ 			& \SI{}{-}		& \\
+    $\mathsf{W}$			& \SI{}{-}		& Weight matrix of layer \\
     $\vec{x}$               & \SI{}{m}      & Vector of position \\
-    $x$                     & \SI{}{m}      & Coordinate in  \newline streamwise Direction \\
-    $y$                     & \SI{}{m}      & Coordinate in \newline wallnormal Direction \\
-    $z$                     & \SI{}{m}      & Coordinate in \newline spanwise Direction
-\end{tabular}
-\vspace{0.5cm}
+    $x$                     & \SI{}{m}      & Streamwise coordinate \\
+    $\vec{\mathsf{x}}$		& \SI{}{-}		& Activation \\
+%    $\mathsf{x}$ 			& \SI{}{-}		& \\
+%    $\vec{y}$ 				& \SI{}{-}		& \\
+    $y$                     & \SI{}{m}      & Wallnormal coordinate \\
+    $\vec{\mathsf{y}}$		& \SI{}{-}		& Layer output \\	
+%    $\mathsf{y}$ 			& \SI{}{-}		& \\
+%    $\vec{z}$ 				& \SI{}{-}		& \\
+    $z$                     & \SI{}{m}      & Spanwise coordinate \\
+    $\vec{\mathsf{z}}$		& \SI{}{-}		& Layer input \\
+%    $\mathsf{z}$ 			& \SI{}{-}		& \\
+\end{longtable}
 
-\begin{tabular}{p{5cm}p{4cm}p{5cm}}
-Greek Symbols     & Unit           & Description             \\ \hline
-	$\kappa$			& -					& Adiabatic Index \\
-    $\mu$               & \SI{}{kg/m/s}     & Dynamic Viscosity\\
-    $\nu$               & \SI{}{m^2/s}      & kinematic Viscosity  \\
-    $\vec{\xi}$         & \SI{}{m/s}        & Microscopic Velocity \\
+\vspace{0.5cm}
+%lower case, upper case
+%normal, var
+%vector, scalar
+\begin{longtable}{p{5cm}p{4cm}p{5cm}}
+	Greek Symbols    	& Unit       		& Description             \\ \hline
+	$\alpha$			& \SI{}{rad}		& Angle of attack \\
+	$\alpha_f$			& \SI{}{-}			& Decay rate of exponential filter \\
+	$\beta$				& \SI{}{-}			& Probability clipping ratio \\
+	$\gamma$			& \SI{}{-}			& Discount rate \\
+%    $\Gamma$			& \SI{}{-}			&  \\
+	$\delta$			& \SI{}{-}			& Delta distribution \\
+%	$\Delta$			& \SI{}{-}			& \\
+	$\epsilon$			& \SI{}{m}			& Smearing width \\
+	$\varepsilon_{p,l_2}$& \SI{}{-}			& Policy $l_2$ regularization coefficient \\ 
+	$\varepsilon_{v,l}$& \SI{}{-}			& Policy $l_2$ regularization coefficient \\ 
+	$\varepsilon_{v,l_2}$& \SI{}{-}			& Value loss coefficient \\ 
+	$\zeta$				& \SI{}{m/s}		& Microscopic velocity \\
+    $\mathrm{Z}$		& \SI{}{-}			& Wavenumber \\
+	$\eta$				& \SI{}{-}			& Gaussian filter kernel \\
+	$\vec{\theta}$		& \SI{}{-}			& Parameter vector \\
+	$\theta$			& \SI{}{-}			& Angle \\
+%	$\vartheta$			& \SI{}{-}			& \\
+	$\Theta$			& \SI{}{-}			& Azimuth angle \\
+%	$\iota$				& \SI{}{-}			& \\
+	$\kappa$			& \SI{}{Nms^2}		& Greedy controller proportionality constant \\
+%	$\varkappa$			& \SI{}{-}			& \\
+	$\lambda$			& \SI{}{-}			& Tip-speed ratio \\
+%	$\Lambda$			& \SI{}{-}			& \\
+    $\mu$               & \SI{}{-}     		& Probability parameter \\
+    $\nu$               & \SI{}{m^2/s}      & Kinematic viscosity  \\
+    $\vec{\xi}$         & \SI{}{m/s}        & Microscopic velocity vector \\
+    $\xi$    		    & \SI{}{m/s}        & Microscopic velocity \\
+   	$\vec{\Xi}$			& \SI{}{-}			& Wavenumber vector\\
+ 	$\Xi$				& \SI{}{-}			& Wavenumber\\
+    $\pi$				& \SI{}{-}			& Policy \\
+%    $\varpi$			& \SI{}{-}			& \\
+%    $\Pi$				& \SI{}{-}			& \\
     $\rho$              & \SI{}{kg/m^3}     & Density \\
-    $\Omega$            & \SI{}{kgs^2/m^6}  & Collision Operator \\
-
-\end{tabular}
+%   $\varrho$			& \SI{}{-}			& \\
+    $\sigma$			& \SI{}{-}			& Sigmoid function \\
+%	$\varsigma$			& \SI{}{-}			& \\
+%	$\Sigma$			& \SI{}{-}			& \\
+%	$\tau$				& \SI{}{-}			& \\
+    $\upsilon$			& \SI{}{m/s}		& Microscopic velocity \\
+    $\Upsilon$			& \SI{}{-}			& Wavenumber \\
+    $\phi$				& \SI{}{rad}		& Angle \\
+%    $\varphi$			& \SI{}{-}			& \\
+    $\Phi$				& \SI{}{rad}		& Pitch angle \\
+%   	$\chi$				& \SI{}{-}			& \\   	
+    $\psi$				& \SI{}{-}			& Learning rate \\
+    $\Psi$				& \SI{}{rad}		& Yaw angle \\
+    $\omega$			& \SI{}{rad/s}		& Angular velocity \\
+    $\hat{\omega}$		& \SI{}{1/s}		& Relaxation frequency \\
+    $\Omega$            & \SI{}{kgs^2/m^6}  & Collision operator \\
+\end{longtable}
 
 \vspace{0.5cm}
-
-\begin{tabular}{p{7cm}p{7cm}}
+%latin, greek
+%lower case, upper case
+\begin{longtable}{p{7cm}p{7cm}}
 	Indices & Description  \\ \hline
-    $\tau$  & Friction \\
-    $b$     & Bulk \\
-    $cp$    & Centerplane \\
-    $f$     & Fluid \\
+	$D$ 	& Drag \\
+	$i$		& running index \\
+	$I$		& Induced \\
+	$j$		& running index \\
+	$k$		& running index \\
+	$l$		& running index \\
+	$L$		& Lift \\
     $m$     & Mean \\
-    $pwm$   & Plane-wise mean \\
-    $rms$   & Root-mean square \\
-    $s$     & Solid, Sound \\
-    $w$     & Wall \\
-
-\end{tabular}
+    $max$	& Maximum \\
+    $n$		& Normal \\
+    $P$		& Power \\
+    $r$		& Radial \\
+    $s$		& Sound \\
+    $t$		& tangential \\
+    $T$		& Thrust \\
+    $x$		& Streamwise \\
+    $\theta$& Azimuthal \\
+\end{longtable}
 
 \vspace{0.5cm}
 
-\begin{tabular}{p{7cm}p{7cm}}
+\begin{longtable}{p{7cm}p{7cm}}
 	Additional Symbols          & Description    \\ \hline
-	$\Vert \vec{a} \Vert $      & Euclidian Norm \\
-	$\nabla$                    & Nabla Operator \\
-	$\Delta$                    & Step\\
-	$\vec{a} \cdot \vec{b} $    & Scalar Product, Matrix multiplication \\
-	$a'$						& Fluctuation \\
-
-
-	
-	
-\end{tabular}
+	$\Vert \vec{(.)} \Vert $    & Euclidian norm \\
+	$\nabla$                    & Nabla operator \\
+	$\delta_{i,j}$				& Kronecker delta \\
+	$\Delta$                    & Step \\
+	$\mathcal{O}(.)$			& Order \\
+	$\vec{(.)} \cdot \vec{(.)}$ & Inner product \\
+	$(.)'$						& Fluctuation \\
+	$[.]^T$						& Transposed vector \\	
+\end{longtable}
 
 \vspace{0.5cm}
 
-\begin{tabular}{p{7cm}p{7cm}}
-	Abbreviations & Description\\ \hline
-	BGK         & Bhatnagar-Gross-Krook \\
-	DNS         & Direct numerical Simulation \\
-	LBM         & Lattice-Boltzmann-Method \\
-	LBE         & Lattice-Boltzmann Equation \\
-	LES         & Large-Eddy Simulation \\
-	MRT         & Multiple Relaxation Times Operator \\
-	NSE         & Navier-Stokes-Equations \\
-	pdf         & Particle-distribution Function \\
-	
-\end{tabular}
+\begin{longtable}{p{7cm}p{7cm}}
+	Abbreviations	& Description\\ \hline
+	ABL				& Atmospheric boundary layer \\
+	ALM				& Actuator line model \\
+	ANN				& Artificial Neural Network \\
+	BEM				& Blade element / momentum theory \\
+	BGK        		& Bhatnagar-Gross-Krook \\
+	CFD				& Computational Fluid Dynamics \\
+	DNS         	& Direct numerical simulation \\
+	HAWT			& Horizontal axis wind turbine \\
+	IEA				& International Energy Agency \\
+	LBM         	& Lattice Boltzmann Method \\
+	LBE         	& Lattice Boltzmann Equation \\
+	LES         	& Large-Eddy Simulation \\
+	LSTM			& Long short-term memory \\
+	MDP				& Markov Decision Process \\
+	MRT         	& Multiple Relaxation Times Operator \\
+	NREL			& National Renewable Energy Laboratory \\
+	NSE         	& Navier-Stokes-Equations \\
+	pdf         	& Particle-distribution Function \\
+	PPO				& Proximal policy optimization \\
+	RL				& Reinforcement Learning \\
+	SGD				& Stochastic Gradient Descent 
+\end{longtable}

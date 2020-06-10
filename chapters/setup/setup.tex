@@ -1,0 +1,15 @@
+\section{Setup}
+\subsection{Preliminary studies}
+To validate the implementation of the controllers and do studies of some of the hyperparameters the BEM environment is used. The airfoil data and physical properties are taken from the NREL5 reference \cite{jonkman_definition_2009}. Upstream of the turbine a velocity probe is placed. Various inflow regimes are tested, to give first insights into the learning behaviour of the RL-controller. Furthermore of the following parameters a parameter study is conducted:
+\begin{itemize}
+	\item number of actions per episode $N_{A,e}$
+	\item number of episodes per training $N_{e,T}$
+	\item learning rate $\psi$
+	\item importance ratio clipping $\beta$
+	\item discount factor $\gamma$
+	\item variance of action $\sigma_A$
+	\item Simulation time steps per action $N_{t,A}$
+	\item value network loss coefficient $\varepsilon_{v,l}$
+	\item policy $l_2$ regularization coefficient $\varepsilon_{p,l_2}$
+	\item value $l_2$ regularization coefficient $\varepsilon_{v,l_2}$
+\end{itemize}

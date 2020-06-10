@@ -1,29 +1,58 @@
 \section{Wind Turbines}
 \subsection{Description of a Turbine and Flow Features}
-First a few basic definitions of the model used for windturbines will be given. Todays mainstream windturbines consist of a rotor with three blades, with a horizontal axis, therefore they are called horizontal axis wind turbines (HAWT), and the rotor points upwind.  This rotor is mounted to the nacelle, which holds the gearbox and the generator. The nacelle sits on top of the tower. The hub height $H$ is defined as the distance from the ground to the axis of rotation of the rotor and is approximately the same as the rotor diameter $D$. Due to the nature of the atmospheric boundary layer (ABL) the wind speed is higher at larger hub heights, and a turbine with a larger diameter can produce more power since the availabe power $P_{avail}$ is proportional to the area $A$ swept by the rotor. This lead to a steady increase in turbine sizes and nominal capacity \cite{rohrig_powering_2019}. In the academic world theoretical reference turbines such as the NREL 5 MW wind turbine \cite{jonkman_definition_2009} or the recently proposed IEA Wind 15-Megawatt Offshore Reference Wind Turbine \cite{gaertner_iea_2020} are used, since data from real turbines usually is not publicly available.\cite{hansen_aerodynamics_2008} \\
-The flow regime a wind turbine is subjected to is the ABL, which features wind velocities of the order of $\mathcal{O}(\SI{1}{m/s})$ to $\mathcal{O}(\SI{10}{m/s})$. Furthermore the flow is turbulent and sheared. For further information on the ABL and the challenges in modelling it, the reader is referred to \cite{kaimal_atmospheric_1994} and \cite{holtslag_stable_2013}. Behind the turbine exists a wake, characterized by an increase of turbulence intensity and a decrease of average velocity by $\SI{50}{\percent}$ and more \cite{abkar_wake_2016-1}. More details on wakes can be found in \cite{boersma_tutorial_2017}. To study the physical phenomena connected to wind turbines, models of the turbines and the airflow have been developed.
+First a few basic definitions of the model used for wind turbines will be given. Todays mainstream wind turbines consist of a rotor with three blades, with a horizontal axis, therefore they are called horizontal axis wind turbines (HAWT), and the rotor points upwind.  This rotor is mounted to the nacelle, which holds the gearbox and the generator. The nacelle sits on top of the tower. The diameter of the rotor is $D$. A schematic of a HAWT is given in \autoref{fig:turbine}. It shows the wind velocity $\vec{V}$, the azimuthal angle $\theta$, angular velocity of the rotor $\omega$, the pitch angle of one of the blades $\Phi_0$, the yaw angle $\Psi$ and the torque due to aerodynamic forces and the generator, $M_{aero}$ and $M_{gen}$, respectively. Due to the nature of the atmospheric boundary layer (ABL) the wind speed is higher at larger hub heights, and a turbine with a larger diameter can produce more power since the availabe power $P_{avail}$ is proportional to the area $A$ swept by the rotor. This leads to a steady increase in turbine sizes and nominal capacity \cite{rohrig_powering_2019}. In the academic world theoretical reference turbines such as the NREL 5 MW wind turbine \cite{jonkman_definition_2009} or the recently proposed IEA Wind 15-Megawatt Offshore Reference Wind Turbine \cite{gaertner_iea_2020} are used, since data from real turbines usually is not publicly available.\cite{hansen_aerodynamics_2008} \\
+The flow regime a wind turbine is subjected to is the ABL, which features wind velocities of the order of $\mathcal{O}(\SI{1}{m/s})$ to $\mathcal{O}(\SI{10}{m/s})$. Furthermore the flow is turbulent and sheared. For further information on the ABL and the challenges in modelling it, the reader is referred to \cite{kaimal_atmospheric_1994} and \cite{holtslag_stable_2013}. The turbine induces a wake, characterized by an increase of turbulence intensity and a decrease of average velocity by $\SI{50}{}$ percent and more \cite{abkar_wake_2016-1}. More details on wakes can be found in \cite{boersma_tutorial_2017}.
+\begin{figure}[H]
+	\centering
+	\def\svgwidth{0.5 \textwidth}
+	\input{pics/turbine.pdf_tex}
+	\caption{Schematic of a HAWT and relevant angles, lengths, velocities and moments.}
+	\label{fig:turbine}
+\end{figure} 
+\subsection{Wind Turbine Control}
+To generate power from the aerodynamic torque acting on the rotor a generator applies a countering torque. Furthermore, the turbine is equipped with different actuators, which can be used to manipulate the behaviour in order to achieve certain goals. The operating conditions of wind turbines can be classified into three regions, depending on the wind speed. In region I, below the cut-in speed, no power is generated and the wind is used to speed up the rotor. In between cut-in and rated speed lays region II, where the goal is to maximize the generated power. At rated speed, the turbine generates the maximum power. Above rated speed, in region III, the control is focussed on the quality of the generated electricity and to minimize loads on the turbine. An example of a detailed control curve can be found in \cite{jonkman_definition_2009}. \cite{boersma_tutorial_2017} \\
+The controllable quantities are $\Psi$, $\Phi$ and $M_{gen}$. To maximize the power, the yaw has to be adjusted so the turbine points upwind. The pitch and generator torque have to be adjusted so that $M_{gen}$ and $\omega$ are maximized, since the generated power $P_{gen}$ is: 
+\begin{equation}
+	P_{gen} = \omega M_{gen}.
+\end{equation} The blades are designed so that the optimal blade pitch is zero. At a given wind speed and constant blade pitch, it can be shown that $M_{aero} \propto \omega^2$. Applying the law of conservation of angular momentum to the rotor and generator, with $I$ being the moment of inertia of rotor and generator, yields:
+\begin{equation}
+	I\frac{\mathrm{d}\omega}{\mathrm{d}t} = M_{aero} - M_{gen}. \label{eq:ang_mom}
+\end{equation} 
+Therefore, controlling the torque in region II according to
+\begin{equation}
+	M_{gen} = \kappa \omega^2 \label{eq:control} 
+\end{equation} maximizes $P_{gen}$, with $\kappa$ being a proportionality constant that can be found experimentally. This control mechanism will be referred to as greedy control, since it seeks to maximize generated power of a single turbine. \cite[p.63 - 77]{hansen_aerodynamics_2008}
+However, this control strategy also maximizes the wake and more sophisticated strategies with the objective of maximizing the generated power of multiple turbines or a whole wind farm have been proposed. They can be divided into two main categories, axial induction control, which tries to lower the power intake of the first turbine, so that the wind speed at the following turbines is higher, and wake redirection control, which aims at steering the wake away from the second turbine. \cite{boersma_tutorial_2017} Recently also the development of dynamic approaches has begun \cite{frederik_helix_2020}. Many different approaches have been taken, from extremum seeking control \cite{ciri_large-eddy_2017} to physically motivated dynamic steering \cite{frederik_helix_2020}. The review in \cite{kheirabadi_quantitative_2019} shows that theoretical approaches for axial induction like \cite{vali_adjoint-based_2017} and \cite{munters_towards_2018} achieved increases of $\SI{20}{}$ percent and more. However these methods are not applicable to real turbines, since they require knowledge of the entire flow field.
 \subsection{Blade Element / Momentum Theory}
-Blade Element / Momentum Theory combines one-dimensional momentum theory and local forces on a section of a blade, the so called blade element, to give a quick way to analyze the loads on a rotor. Momentum theory assumes the flow to be steady, inviscid, incompressible and axisymmetric. The rotor is assumed to have an infinite number of blades and thus becomes a permeable disc. It is based on the inegral forms of conservation of mass, momenta and energy, as shown in \eqref{eq:mass_cons} through \eqref{eq:power}, respectively. The surface of the control volume $V$ is denoted as $\partial V$, density is denoted as $\rho$, the velocity vector is $\vec{u}= \left[u_x, u_r, u_\theta \right]$  and $\mathrm{d}\vec{A}$ is the area vector pointing outwards of the control volume. $T$ is the force acting on the rotor in streamwise direction and $M_{aero}$ the torque and $P$ the power extracted by the rotor. 
+To study the physical phenomena connected to wind turbines, models of the turbines and the airflow have been developed. Blade Element / Momentum Theory combines one-dimensional momentum theory and local forces on a section of a blade, the so called blade element, to give a quick way to analyze the loads on a rotor. Momentum theory assumes the flow to be steady, inviscid, incompressible and axisymmetric. The rotor is assumed to have an infinite number of blades and thus becomes a permeable disc. It is based on the integral forms of conservation of mass, momenta and energy: 
 \begin{align}
-	\oint_{\partial V} \rho \vec{u} \cdot \mathrm{d}\vec{A} &= 0 \label{eq:mass_cons}\\
-	\oint_{\partial V} \rho u_x \vec{u} \cdot \mathrm{d}\vec{A} &= T - \oint_{\partial V} p \mathrm{d} \vec{A} \cdot \vec{e}_x \label{eq:thrust} \\
-	\oint_{\partial V} \rho r u_\theta \vec{u} \cdot \mathrm{d} \vec{A} &= M_{aero} \label{eq:torque}\\
-	\oint_{\partial V} \left(p + \frac{1}{2} \rho \Vert\vec{u} \Vert^2\right) \vec{u} \cdot \mathrm{d} \vec{A} &= P \label{eq:power}
-\end{align}	
-Furthermore the dimensionless tip speed ratio is denoted as $\lambda$, it is defined by the angular velocity of the rotor, $\omega$, its radius $R$ and the mean wind speed $V_0$. \cite[p. 7 - 8]{sorensen_general_2016}
+	\oint_{\partial V} \rho \vec{u} \cdot \vec{n} \, \mathrm{d}A &= 0 \label{eq:mass_cons}\\
+	\oint_{\partial V} \rho u_x \vec{u} \cdot \vec{n} \, \mathrm{d}A &= T - \oint_{\partial V} p \vec{n}\cdot \vec{e}_x \, \mathrm{d}A   \label{eq:thrust} \\
+	\oint_{\partial V} \rho r u_\theta \vec{u} \cdot \vec{n} \, \mathrm{d}A  &= M_{aero} \label{eq:torque}\\
+	\oint_{\partial V} \left(p + \frac{1}{2} \rho \Vert\vec{u} \Vert^2\right) \vec{u} \cdot \vec{n} \, \mathrm{d}A  &= P. \label{eq:power}
+\end{align}	The surface of the control volume $V$ is denoted as $\partial V$, density is denoted as $\rho$, the velocity vector is $\vec{u}= \left[u_x, u_r, u_\theta \right]$  and $\vec{n}$ is the normal vector pointing outwards of the control volume. $T$ is the thrust force acting on the rotor in streamwise direction and $P$ the power extracted by the rotor. 
+The three dimensionless quantities tip speed ratio $\lambda$, thrust coefficient $C_T$ and power coefficient $C_P$ are defined as follows:
 \begin{align}
-	\lambda &= \frac{\omega R}{V_0} \\
-	C_T &= \frac{T}{\frac{1}{2} \rho A V_0^2} \\
-	C_P &= \frac{P}{\frac{1}{2} \rho A V_0^3} 
+\lambda &= \frac{\omega R}{V_0} \\
+C_T &= \frac{T}{\frac{1}{2} \rho A V_0^2} \\
+C_P &= \frac{P}{\frac{1}{2} \rho A V_0^3},
 \end{align}
-Applying these equations to a controll volume enclosed by the stream tube around the rotor disc under the assumption that $u_x = u_R = const$ in the rotor disc, yields the basic relationships for the thrust \eqref{eq:thrust2} and power \eqref{eq:power2}. The axial interference factor $a$ is a measure for the influence of the rotor disc on the velocity in the stream tube.  From \eqref{eq:power2} it is possible to find a maximum power coefficient, which is given in \eqref{eq:betz-limit} and is referred to as the Betz-Joukowski limit. In practice this limit can not be reached due to higher dimensional effects such as the rotation of the wake. \cite[p.10 - 11]{sorensen_general_2016} Sørenensen gives an assessment of the assumptions made in \cite{sorensen_general_2016}. 
+with $R$ being the radius of the rotor and and $V_0$ is the mean wind speed. 
+Applying these equations to a control volume enclosed by the stream tube around the rotor disc under the assumption that $u_x = u_r = const$ in the rotor disc, yields these basic relationships for the thrust and power:
 \begin{align}
-	a &= 1 - \frac{u_R}{V_0} \\
 	T &= 2 \rho A V_0^2 a(1-a), \quad C_T = 4a(1-a) \label{eq:thrust2}\\
-	P &= 2 \rho A V_0^3 a(1-a)^2, \quad C_P = 4a(1-a)^2 \label{eq:power2} \\
-	C_{P,max} &= \frac{16}{27} \approx 59.3 \%, \quad a = \frac{1}{3} \label{eq:betz-limit}
+	P &= 2 \rho A V_0^3 a(1-a)^2, \quad C_P = 4a(1-a)^2 \label{eq:power2}.
 \end{align}
-The local forces acting on the blade are calculated assuming a 2D flow around an airfoil. The forces and velocities in the local coordinate system of the blade are shown in \ref{fig:airfoil}. The forces $\vec{F}_n$ and $\vec{F}_t$ are the forces on the blade element in normal and tangential direction, respectively, while the lift and drag forces are $\vec{F}_L$ and $\vec{F}_D$. The undisturbed wind speed is $V_0$, $\omega r$ is the velocity due to the rotation of the rotor and is the induced velocity defined as $\vec{w}_i = [-a V_0, a'\omega r]$, with axial and tangential induction factor $a$ and $a'$. The sum of these velocities is the relative velocity $\vec{V}_{rel}$. 
+The axial interference factor $a$ is a measure for the influence of the rotor disc on the velocity in the stream tube and defined as 
+\begin{equation}
+	a = 1 - \frac{u_r}{V_0}.
+\end{equation}  
+From \eqref{eq:power2} it is possible to find a maximum power coefficient, which is given by
+\begin{equation}
+		C_{P,max} = \frac{16}{27} \approx 59.3 \%, \quad a = \frac{1}{3} \label{eq:betz-limit},
+\end{equation} 
+and is referred to as the Betz-Joukowski limit. In practice this limit can not be reached due to higher dimensional effects such as the rotation of the wake. Sørenensen gives an assessment of the assumptions made in \cite{sorensen_general_2016}. \cite[p. 7 - 11]{sorensen_general_2016} \\
+The local forces acting on the blade are calculated assuming a 2D flow around an airfoil. The forces and velocities in the local coordinate system of the blade are shown in \autoref{fig:airfoil}, with $x$ being the global streamwise direction. The forces $\vec{F}_n$ and $\vec{F}_t$ are the forces on the blade element in normal and tangential direction, respectively, while the lift and drag forces are $\vec{F}_L$ and $\vec{F}_D$. The undisturbed wind speed is $V_0$, $\omega r$ is the velocity due to the rotation of the rotor and the induced velocity is defined as $\vec{V}_i = [-a V_0, a'\omega r]$, with axial and tangential induction factor $a$ and $a'$. The sum of these velocities is the relative velocity $\vec{V}_{rel}$. 
 \begin{figure}[H]
 	\centering
 	\def\svgwidth{0.5 \textwidth}
@@ -31,26 +60,25 @@ The local forces acting on the blade are calculated assuming a 2D flow around an
 	\caption{Schematic of the local forces and velocities at a blade element.}
 	\label{fig:airfoil}
 \end{figure} 
-The thrust and torque on the rotor within an infinitesimally thick stream tube are calculated according to \eqref{eq:thrust_airfoil} and \eqref{eq:torque_airfoil}. The force coefficients can be found by projecting lift and drag of the airfoil, which can usually be found as tabulated values, into the global coordinate system. Lift and drag depend on the local angle of attack $\alpha$ and the Reynolds number. The angle of attack can be found through the difference of the angle between rotor plane and $\vec{V}_{rel}$, denoted as $\phi$ and the local pitch $\gamma$. 
+The thrust and torque on the rotor within an infinitesimally thick stream tube are calculated as follows \begin{align}
+\frac{\mathrm{d}T}{\mathrm{d}r} &=N_b F_n = \frac{1}{2}N_b \rho L_c \Vert \vec{V}_{rel} \Vert^2 C_n \label{eq:thrust_airfoil}\\
+\frac{\mathrm{d}M_{aero}}{\mathrm{d}r} &= N_b r F_t = \frac{1}{2} N_b\rho L_c \Vert r \vec{V}_{rel} \Vert^2 C_t, \label{eq:torque_airfoil}
+\end{align} with $N_b$ being the number of blades and $L_c$ the chord length of the airfoil. The force coefficients $C_n$ and $C_t$ can be found by projecting lift and drag of the airfoil, which can usually be found as tabulated values, into the global coordinate system. Lift and drag depend on the local angle of attack $\alpha$ and the Reynolds number. The angle of attack $\alpha$ can be found through the difference of the angle between rotor plane and $\vec{V}_{rel}$, denoted as $\phi$ and the local pitch $\Phi_l$. Combining \eqref{eq:thrust_airfoil} and \eqref{eq:torque_airfoil} with the thrust and torque found by applying momentum theory to the same stream tube yields:
 \begin{align}
-	\frac{\mathrm{d}T}{\mathrm{d}r} &=N_b F_n = \frac{1}{2}N_b \rho c \Vert \vec{V}_{rel} \Vert^2 C_n \label{eq:thrust_airfoil}\\
-	\frac{\mathrm{d}M_{aero}}{\mathrm{d}r} &= N_b r F_t = \frac{1}{2} N_b\rho c \Vert r \vec{V}_{rel} \Vert^2 C_n \label{eq:torque_airfoil}
+a &= \frac{1}{4 \sin(\phi)^2 / \left(s C_n \right) +1} \label{eq:BEM1} \\
+a' &= \frac{1}{4 \sin(\phi) \cos(\phi) / \left( s C_t \right) -1}, \label{eq:BEM2}
 \end{align}
-Combining \eqref{eq:thrust_airfoil} and \eqref{eq:torque_airfoil} with the thrust and torque found by applying momentum theory to the same stream tube yields \eqref{eq:BEM1} and \eqref{eq:BEM2}, with the solidity $\sigma = N_b c/(2 \pi r)$. This allows for an iterative computation of the infinitesimal torque and thrust as described in algorithm \ref{al:BEM}. Integrating these with respect to the radius thus yields the total torque and thrust, $T$ and $M_{aero}$. In practice the blade is defined as finite sized blade elements and the integration becomes a summation. \cite[p. 100 - 103]{sorensen_general_2016} \\
-\begin{align}
-	a &= \frac{1}{4 \sin(\phi)^2 / \left(\sigma C_n \right) +1} \label{eq:BEM1} \\
-	a' &= \frac{1}{4 \sin(\phi) \cos(\phi) / \left( \sigma C_t \right) -1} \label{eq:BEM2}
-\end{align}
+with the solidity $s = N_b c/(2 \pi r)$. This allows for an iterative computation of the infinitesimal torque and thrust as described in \autoref{alg:BEM}. Integrating these with respect to the radius yields $M_{aero}$ and $T$. In practice, the blade is defined as finite sized blade elements and the integration becomes a summation. \cite[p. 100 - 103]{sorensen_general_2016} \\
 \begin{algorithm}
 	\caption{Algorithm to compute thrust and torque on a blade element}
-	\label{al:BEM}
+	\label{alg:BEM}
 	\begin{algorithmic}
 		\FORALL{elements}
 			\STATE $a \gets 0$ 
 			\STATE $a'\gets 0$
 			\REPEAT
 				\STATE $\phi \gets \tan^{-1}((1-a)/(\lambda r/R (1+a') ))$
-				\STATE $\alpha \gets \phi - \gamma$
+				\STATE $\alpha \gets \phi - \Phi_l$
 				\STATE compute $C_n$ and $C_t$ from lift and drag tables
 				\STATE calculate new $a$ and $a'$ from \eqref{eq:BEM1} and \eqref{eq:BEM2}
 			\UNTIL{$a$ and $a'$ converge}
@@ -58,20 +86,10 @@ Combining \eqref{eq:thrust_airfoil} and \eqref{eq:torque_airfoil} with the thrus
 		\STATE calculate $\int \mathrm{d}T$ and $\int \mathrm{d}M$ according to \eqref{eq:thrust_airfoil} and \eqref{eq:torque_airfoil}
 	\end{algorithmic}
 \end{algorithm}
-Many corrections for BEM have been found to increase the accuracy of the model, among them the Prandtl tip loss factor, which proposes a factor to correct for the error due to the assumption of an infinite number of blades. Furthermore, above an axial induction factor of $1/3$, the assumptions made by BEM become inaccurate, as momentum theory predicts an expansion of the wake that is significantly too large, therefore Glauert proposed a correction for the calculation of $C_t$. \cite[p. 103 - 104]{sorensen_general_2016} \\
-Many other corrections for effects caused by the wake have also been proposed, such as a coupled near and far wake model by Pirrung et al. \cite{pirrung_coupled_2016}.
+Many corrections for BEM have been found to increase the accuracy of the model. Among them is the Prandtl tip loss factor, which proposes a factor to correct for the error due to the assumption of an infinite number of blades. Furthermore, above an axial induction factor of $1/3$, the assumptions made by BEM become inaccurate, as momentum theory predicts an expansion of the wake that is significantly too large. A correction for the calculation of $C_t$ has been proposed by Glauert. Many other corrections for effects caused by the wake have also been proposed, such as a coupled near and far wake model by Pirrung et al. \cite{pirrung_coupled_2016}. \cite[p. 103 - 104]{sorensen_general_2016}
 \subsection{Actuator Line Model}
-To study the influence of the wind turbine on the fluid field, the fluid field has to be resolved by means of CFD. Since fully resolving the shape of the blades would require a prohibitingly fine resolution, the influce of the blade on the fluid is modelled. An overview over the models applied can be found in \cite{breton_survey_2017} and \cite{kheirabadi_quantitative_2019}. One such model is the actuator line model (ALM). Like in BEM, the forces on the blade are calculated from local velocities and airfoil data at the points $r_j$ along the $i$th actuator line $\vec{e}_i$. These forces are then distributed as body forces by applying a convolution with a gaussian filter kernel $\eta(d)$, a definition for a three dimensional kernel is given in \eqref{eq:gauss_alm}. The parameter $\epsilon$ is referred to as the smearing width, since it controls the stretching of the bell curve. \cite{sorensen_numerical_2002}
+To study the interaction of fluid and turbine in detail, the flow field has to be resolved by means of computational fluid dynamics (CFD). Since fully resolving the shape of the blades would require a prohibitively fine resolution, the influence of the blade on the fluid is modelled. An overview over the models applied can be found in \cite{breton_survey_2017} and \cite{kheirabadi_quantitative_2019}. One such model is the actuator line model (ALM), which models each blade as a line of forces on the fluid. Like in BEM, the forces on the blade are calculated from local velocities and airfoil data at the points $r_j$ along the $i$th actuator line $\vec{e}_i$. These forces are then distributed by applying a convolution with a gaussian filter kernel $\eta(d)$:
 \begin{align}
 	\eta(d) &= \frac{1}{\epsilon^2 \pi^{3/2}} e^{(-(d/\epsilon)^2)} \label{eq:gauss_alm} \\
-	\vec{F(x)} &= \sum_{i=1}^{N_b} \int_{0}^{R} \left(\vec{F_n}(r)+ \vec{F_t}(r) \right) \eta(\Vert x - r\vec{e}_i\Vert) \mathrm{d}r \label{eq:ALM}
-\end{align}
-As shown for example by Asmuth et. al \cite{asmuth_actuator_2019-1}, the ALM does not account for velocity induced by the root and tip vortices, leading to an overprediction of forces on the blade, most significantly of the tangential force near the tip. Among others, Meyer-Forsting et al. have proposed corrections  based on an iterative correction of the relative velocity \cite{meyer_forsting_vortex-based_2019}.
-\subsection{Wind Turbine Control}
-To generate power from the aerodynamic torque acting on the rotor a generator applys a countering torque. Furthermore, the turbine is equipped with different actuators, which can be used to manipulate the behaviour in order to achieve certain goals. The operating conditions of wind turbines can be classified into three regions, depending on the wind speed. In region I, below the cut-in speed, no power is generated and the wind is used to speed up the rotor. In between cut-in and rated speed lays region II, where the goal is to maximize the generated power. At rated speed, the turbine generates the maximum power. Above rated speed, in region III, the control is focussed on the quality of the generated electricity and to minimize loads on the turbine. An example of a detailed control curve can be found in \cite{jonkman_definition_2009}. \cite{boersma_tutorial_2017} \\
- The quantities controllable are the yaw $\upsilon$, the blade pitch $\gamma_p$ and the torque of the generator $M_{gen}$. To maximize the power, the yaw has to be adjusted so the turbine points upwind and the pitch and generator torque have to be adjusted so that $\vec{F}_t$ and $\omega$ are balanced, since $P = \omega M_{aero} = \omega N_b \int_0^Rr\vec{F}_t \cdot \vec{e}_\theta \mathrm{d}r$. The blades are designed so that the optimal blade pitch is zero and the optimal power only depends on the tip speed ratio. At a given wind speed and constant blade pitch, $M_{aero}$ becomes a function only depending on $\omega$. It can be shown that $M_{aero} \propto \omega^2$. Applying the law of conservation of angular momentum to the rotor and generator ,with $I$ being the moment of inertia of rotor and generator, yields \eqref{eq:ang_mom}. Therefore, controlling the torque in region II according to \eqref{eq:control} maximizes the generated power, with $k$ being a proportionality constant that can be found experimentally. This control mechanism will be referred to as greedy control, since it seeks to maximize generated power of a single turbine. \cite[p.63 - 77]{hansen_aerodynamics_2008}
-\begin{align}
-	I\frac{\mathrm{d}\omega}{\mathrm{d}t} &= M_{aero} - M_{gen} \label{eq:ang_mom} \\
-	M_{gen} &= k \omega^2 \label{eq:control} 
-\end{align}
-However, this control strategy also maximizes the wake and more sophisticated strategies with the objective of maximizing the generated power of multiple turbines or a whole wind farm have been proposed. They can be divided into two main categories, axial induction control, which tries to lower the power intake of the first turbine, so that the wind speed at the following turbines is higher, and wake redirection control, which aims at steering the wake away from the second turbine. \cite{boersma_tutorial_2017} Recently also the development of dynamic approaches has begun \cite{frederik_helix_2020}. Many different approaches have been taken, from extremum seeking control \cite{ciri_large-eddy_2017} to physically motivated dynamic steering \cite{frederik_helix_2020}. The review in \cite{kheirabadi_quantitative_2019} shows that theoretical approaches for axial induction like \cite{vali_adjoint-based_2017} and \cite{munters_towards_2018} achieved increases of $\SI{20}{\percent}$ and more, however these methods are not applicable to real turbines.
+	\vec{F(x)} &= \sum_{i=1}^{N_b} \int_{0}^{R} \left(\vec{F}_n(r)+ \vec{F}_t(r) \right) \eta(\Vert \vec{x} - r\vec{e}_i\Vert)\, \mathrm{d}r. \label{eq:ALM}
+\end{align} The parameter $\epsilon$ is referred to as the smearing width, since it controls the stretching of the bell curve. As shown for example by Asmuth et. al \cite{asmuth_actuator_2019}, the ALM does not account for velocity induced by the root and tip vortices. This leads to an overprediction of forces on the blade, most significantly of the tangential force near the tip. Among others, Meyer-Forsting et al. have proposed corrections  based on an iterative correction of the relative velocity \cite{meyer_forsting_vortex-based_2019}. \cite{sorensen_numerical_2002}
