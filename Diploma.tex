@@ -7,10 +7,9 @@
 \addbibresource{bibliography/bibliography.bib}
 
 \begin{document}
-
 	\mathswapoff                 % \mathswapoff for ENGLISH math notation !
-	\graphicspath{{pics/}}	% Grafikpfad
-	
+
+	\graphicspath{{pics/}{pics/logos/}{pics/diagrams/}{pics/plots/}}
 	\pagestyle{empty}
 	\include{chapters/Titlepage}
 	\cleardoublepage
@@ -27,14 +26,21 @@
 	
 	\cleardoublepage
 	\pagestyle{scrheadings}
-	\pagenumbering{arabic}
+	\pagenumbering{arabic}	
+	\chapter{Introduction}
+	\input{chapters/introduction}
 	\chapter{Theoretical Background}
 	\input{chapters/theory/windturbine}
 	\input{chapters/theory/ANN}
 	\input{chapters/theory/LBM}
+	\input{chapters/theory/SOTA}
 	\chapter{Setup of Simulation}
 	\input{chapters/setup/Implementation}
 	\input{chapters/setup/setup}
+	\chapter{Results}
+	\input{chapters/results/Validation}
+	\input{chapters/results/parameter_study}
+	\chapter{Conclusion}
 % 	\setlength{\abovedisplayskip}{16pt}		% größerer Abstand vor Equations
 % 	\setlength{\belowdisplayskip}{16pt}		% größerer Abstand nach Equations
 	\clearpage

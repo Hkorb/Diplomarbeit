@@ -131,9 +131,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.99999999"
-     inkscape:cx="223.39648"
-     inkscape:cy="181.16626"
+     inkscape:zoom="22.627417"
+     inkscape:cx="497.97564"
+     inkscape:cy="246.48189"
      inkscape:document-units="mm"
      inkscape:current-layer="layer2"
      showgrid="true"
@@ -245,9 +245,9 @@
        x="54.239582"
        y="168.60023" />
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.41403946;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect854-2"
-       width="18.520838"
+       width="19.843765"
        height="10.583328"
        x="96.572914"
        y="168.60023" />
@@ -319,16 +319,16 @@
        id="path35990"
        inkscape:connector-curvature="0" />
     <ellipse
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.40000001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.46623322;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
        id="path45587"
-       cx="146.84476"
-       cy="136.04434"
-       rx="9.260417"
-       ry="5.2916665" />
+       cx="146.57077"
+       cy="136.27487"
+       rx="10.824202"
+       ry="6.1505451" />
     <ellipse
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path5874-9"
-       cx="146.96121"
+       cx="146.89507"
        cy="154.14673"
        rx="5.0960531"
        ry="5.1976271" />
@@ -400,13 +400,13 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="138.97963"
-       y="138.24997"
+       x="137.67001"
+       y="139.41927"
        id="text103260"><tspan
          sodipodi:role="line"
          id="tspan103258"
-         x="138.97963"
-         y="138.24997"
+         x="137.67001"
+         y="139.41927"
          style="font-size:4.58611107px;stroke-width:0.26458332">$\tanh$</tspan></text>
     <text
        xml:space="preserve"
@@ -455,35 +455,35 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="143.82092"
-       y="156.10515"
+       x="143.30829"
+       y="156.57971"
        id="text103280"><tspan
          sodipodi:role="line"
          id="tspan103278"
-         x="143.82092"
-         y="156.10515"
+         x="143.30829"
+         y="156.57971"
          style="font-size:4.58611107px;stroke-width:0.26458332">$\times$</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:4.58611107px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="102.76657"
-       y="156.1628"
+       x="102.34361"
+       y="156.60243"
        id="text103284"><tspan
          sodipodi:role="line"
          id="tspan103282"
-         x="102.76657"
-         y="156.1628"
+         x="102.34361"
+         y="156.60243"
          style="font-size:4.58611107px;stroke-width:0.26458332">$\times$</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="56.558022"
-       y="125.68572"
+       x="55.995781"
+       y="126.13221"
        id="text103294"><tspan
          sodipodi:role="line"
          id="tspan103292"
-         x="56.558022"
-         y="125.68572"
+         x="55.995781"
+         y="126.13221"
          style="font-size:4.58611107px;stroke-width:0.26458332">$\times$</tspan></text>
     <text
        xml:space="preserve"
@@ -499,13 +499,13 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="102.85678"
-       y="125.68228"
+       x="102.27213"
+       y="126.15"
        id="text103321"><tspan
          sodipodi:role="line"
          id="tspan103319"
-         x="102.85678"
-         y="125.68228"
+         x="102.27213"
+         y="126.15"
          style="font-size:4.58611107px;stroke-width:0.26458332">$+$</tspan></text>
     <text
        xml:space="preserve"

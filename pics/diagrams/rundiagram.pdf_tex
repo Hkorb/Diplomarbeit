@@ -1,0 +1,92 @@
+%% Creator: Inkscape inkscape 0.92.5, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'rundiagram.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{593.2650925bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.51960768)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0.77180542,0.4557488){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Python\end{tabular}}}}%
+    \put(0.07650078,0.4557488){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C++\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{rundiagram.pdf}}%
+    \put(0.05121697,0.32932975){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}ActuatorLine\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{rundiagram.pdf}}%
+    \put(0.05753793,0.06384977){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Controller\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{rundiagram.pdf}}%
+    \put(0.31037599,0.19026882){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}VelocityProbe\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{rundiagram.pdf}}%
+    \put(0.57585596,0.1902688){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Probe\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{rundiagram.pdf}}%
+    \put(0.82110887,0.32932975){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Turbine\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{rundiagram.pdf}}%
+    \put(0.82869405,0.06384977){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}TFController\end{tabular}}}}%
+    \put(3.21343676,-0.2912612){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.52558465\unitlength}\raggedright \end{minipage}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{rundiagram.pdf}}%
+    \put(0.67699114,0.13338024){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Environment\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{rundiagram.pdf}}%
+    \put(0.83248661,0.21555262){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Agent\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{rundiagram.pdf}}%
+    \put(0.8137365,0.16650286){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathsf{\vec{S}}$\end{tabular}}}}%
+    \put(0.67065296,0.17793479){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$u$\end{tabular}}}}%
+    \put(0.73345936,0.19532099){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega, \Theta$\end{tabular}}}}%
+    \put(0.18906357,0.37455144){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Phi, \Psi, \omega, \Theta$\end{tabular}}}}%
+    \put(0.75916361,0.29140404){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M_{aero}$\end{tabular}}}}%
+    \put(1.14391164,-0.39228789){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.72301747\unitlength}\raggedright \end{minipage}}}%
+    \put(0.88619854,0.12671213){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathsf{\vec{A}}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{rundiagram.pdf}}%
+    \put(0.90075285,0.30025338){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Phi, \Psi, M_{gen}$\end{tabular}}}}%
+    \put(0.51705384,0.20227045){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$u$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{rundiagram.pdf}}%
+    \put(0.37358551,0.32932975){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}LBM\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{rundiagram.pdf}}%
+    \put(0.32933885,0.34829261){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\vec{F}$\end{tabular}}}}%
+    \put(0.30437894,0.31041287){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M_{aero}$\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

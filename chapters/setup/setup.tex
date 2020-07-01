@@ -1,15 +1,54 @@
 \section{Setup}
-\subsection{Preliminary studies}
-To validate the implementation of the controllers and do studies of some of the hyperparameters the BEM environment is used. The airfoil data and physical properties are taken from the NREL5 reference \cite{jonkman_definition_2009}. Upstream of the turbine a velocity probe is placed. Various inflow regimes are tested, to give first insights into the learning behaviour of the RL-controller. Furthermore of the following parameters a parameter study is conducted:
+\subsection{Preliminary Studies in the BEM environment}
+To validate the implementation of the controllers and do studies of some of the hyperparameters of the agent the BEM environment is used. The airfoil data and physical properties are taken from the NREL5 reference \cite{jonkman_definition_2009}. The mean wind speed is $V_0=\SI{10.5}{m/s}$ and a velocity probe is placed ten and a half meters upstream of the turbine. A parameter study of the following parameters is conducted:
 \begin{itemize}
-	\item number of actions per episode $N_{A,e}$
-	\item number of episodes per training $N_{e,T}$
-	\item learning rate $\psi$
-	\item importance ratio clipping $\beta$
-	\item discount factor $\gamma$
 	\item variance of action $\sigma_A$
-	\item Simulation time steps per action $N_{t,A}$
-	\item value network loss coefficient $\varepsilon_{v,l}$
 	\item policy $l_2$ regularization coefficient $\varepsilon_{p,l_2}$
 	\item value $l_2$ regularization coefficient $\varepsilon_{v,l_2}$
 \end{itemize}
+These parameters were chosen since they do not directly depend on the physics and layout of the problem. The other parameters are set according to \autoref{tab:params_agent}. The control variable is $M_{gen}$. 
+\begin{table}[h]
+	\centering
+	\caption{Parameters of agent and environment}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Parameter & Symbol & Value \\
+		\hline \hline
+		Time per action & & $\SI{1.0}{s}$ \\ \hline
+		Number of actions per episode & $N_{A,e}$ & $500$ \\ \hline
+		Number of episodes per batch & $N_{e,b}$ & $12$ \\ \hline
+		Width of actor network & & $100$ \\ \hline
+		Width of value network & & $200$ \\ \hline
+		Variance of action & $\sigma_A$ & $0.1$ \\ \hline
+		Importance ratio clipping & $\beta$ & $0.2$ \\ \hline
+		Discount factor & $\gamma$ & $0.95$ \\ \hline
+		Policy $l_2$ regularizaion coefficient & $\varepsilon_{p,l_2} $ & $0.1$ \\ \hline
+		Value $l_2$ regularization coefficient & $\varepsilon_{v,l_2}$ & $0.1$ \\ \hline
+		Value network loss coefficient & $\varepsilon_{v,l}$ & $0.5$ \\ \hline
+		Learning rate & $\psi$ & $10^{-3}$ \\
+		\hline 
+	\end{tabular}
+	\label{tab:params_agent}
+\end{table}
+\subsection{The LBM-ALM Environment}
+\label{ssec:LBM_ALM_env}
+The properties of the turbine are again taken from the NREL5 reference \cite{jonkman_definition_2009}. The diameter $D$ of the rotor is therefore $D=\SI{126}{m}$. Three turbines are placed in the center of the cross-stream plane with a distance of five diameters in streamwise direction. The first turbine is placed three diameters downstream of the inlet. The domain is $19$ diameters long and six diameters wide and high. In order to reduce computational cost, a more refined domain is placed within the first domain. It is placed in the center of the crosswise plane and one diameter downstream of the inlet. The inflow is turbulent. The parameters of the domain are gathered in \autoref{tab:params_domain}. \\ 
+\begin{table}[h]
+	\centering
+	\caption{Parameters of the domain}
+	\begin{tabular}{|c|c|}
+	\hline
+	Parameter & Value \\ \hline \hline
+	Rotor diameter & \SI{126}{m} \\ \hline
+	Outer domain H x W x L & $\SI{6}{D} \times \SI{6}{D} \times \SI{19}{D}$ \\ \hline
+	Outer domain resolution & $\SI{8}{nodes/D}$ \\ \hline
+	Inner domain H x W x L & $\SI{5}{D} \times \SI{5}{D} \times \SI{16}{D}$ \\ \hline
+	Inner domain resolution & $\SI{16}{nodes/D}$ \\ \hline
+	Turbulence intensity & $\SI{5}{\percent} $ \\ \hline
+	Mean wind speed & $\SI{10.5}{m/s} $ \\ \hline
+	\end{tabular}
+	\label{tab:params_domain}
+\end{table}
+\subsection{Learning New Behaviour}
+\subsection{Optimizing Specific Behaviour}
+Frederiks et al. proposed the helix-approach in \cite{frederik_helix_2020}. This is used as basis for optimization of specific parameter.

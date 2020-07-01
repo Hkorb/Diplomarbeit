@@ -1,17 +1,18 @@
 \section{Wind Turbines}
 \subsection{Description of a Turbine and Flow Features}
 First a few basic definitions of the model used for wind turbines will be given. Todays mainstream wind turbines consist of a rotor with three blades, with a horizontal axis, therefore they are called horizontal axis wind turbines (HAWT), and the rotor points upwind.  This rotor is mounted to the nacelle, which holds the gearbox and the generator. The nacelle sits on top of the tower. The diameter of the rotor is $D$. A schematic of a HAWT is given in \autoref{fig:turbine}. It shows the wind velocity $\vec{V}$, the azimuthal angle $\theta$, angular velocity of the rotor $\omega$, the pitch angle of one of the blades $\Phi_0$, the yaw angle $\Psi$ and the torque due to aerodynamic forces and the generator, $M_{aero}$ and $M_{gen}$, respectively. Due to the nature of the atmospheric boundary layer (ABL) the wind speed is higher at larger hub heights, and a turbine with a larger diameter can produce more power since the availabe power $P_{avail}$ is proportional to the area $A$ swept by the rotor. This leads to a steady increase in turbine sizes and nominal capacity \cite{rohrig_powering_2019}. In the academic world theoretical reference turbines such as the NREL 5 MW wind turbine \cite{jonkman_definition_2009} or the recently proposed IEA Wind 15-Megawatt Offshore Reference Wind Turbine \cite{gaertner_iea_2020} are used, since data from real turbines usually is not publicly available.\cite{hansen_aerodynamics_2008} \\
-The flow regime a wind turbine is subjected to is the ABL, which features wind velocities of the order of $\mathcal{O}(\SI{1}{m/s})$ to $\mathcal{O}(\SI{10}{m/s})$. Furthermore the flow is turbulent and sheared. For further information on the ABL and the challenges in modelling it, the reader is referred to \cite{kaimal_atmospheric_1994} and \cite{holtslag_stable_2013}. The turbine induces a wake, characterized by an increase of turbulence intensity and a decrease of average velocity by $\SI{50}{}$ percent and more \cite{abkar_wake_2016-1}. More details on wakes can be found in \cite{boersma_tutorial_2017}.
-\begin{figure}[H]
+The flow regime a wind turbine is subjected to is the ABL, which features wind velocities of the order of $\mathcal{O}(\SI{1}{m/s})$ to $\mathcal{O}(\SI{10}{m/s})$. Furthermore the flow is turbulent and sheared. For further information on the ABL and the challenges in modelling it, the reader is referred to \cite{kaimal_atmospheric_1994} and \cite{holtslag_stable_2013}. The turbine induces a wake, characterized by an increase of turbulence intensity and a decrease of average velocity by $\SI{50}{}$ percent and more \cite{abkar_wake_2016}. More details on wakes can be found in \cite{boersma_tutorial_2017}.
+\begin{figure}[h]
 	\centering
 	\def\svgwidth{0.5 \textwidth}
-	\input{pics/turbine.pdf_tex}
+	\input{pics/diagrams/turbine.pdf_tex}
 	\caption{Schematic of a HAWT and relevant angles, lengths, velocities and moments.}
 	\label{fig:turbine}
 \end{figure} 
 \subsection{Wind Turbine Control}
+\label{sec:WTC}
 To generate power from the aerodynamic torque acting on the rotor a generator applies a countering torque. Furthermore, the turbine is equipped with different actuators, which can be used to manipulate the behaviour in order to achieve certain goals. The operating conditions of wind turbines can be classified into three regions, depending on the wind speed. In region I, below the cut-in speed, no power is generated and the wind is used to speed up the rotor. In between cut-in and rated speed lays region II, where the goal is to maximize the generated power. At rated speed, the turbine generates the maximum power. Above rated speed, in region III, the control is focussed on the quality of the generated electricity and to minimize loads on the turbine. An example of a detailed control curve can be found in \cite{jonkman_definition_2009}. \cite{boersma_tutorial_2017} \\
-The controllable quantities are $\Psi$, $\Phi$ and $M_{gen}$. To maximize the power, the yaw has to be adjusted so the turbine points upwind. The pitch and generator torque have to be adjusted so that $M_{gen}$ and $\omega$ are maximized, since the generated power $P_{gen}$ is: 
+The controllable variables are $\Psi$, $\Phi$ and $M_{gen}$. To maximize the power, the yaw has to be adjusted so the turbine points upwind. The pitch and generator torque have to be adjusted so that $M_{gen}$ and $\omega$ are maximized, since the generated power $P_{gen}$ is: 
 \begin{equation}
 	P_{gen} = \omega M_{gen}.
 \end{equation} The blades are designed so that the optimal blade pitch is zero. At a given wind speed and constant blade pitch, it can be shown that $M_{aero} \propto \omega^2$. Applying the law of conservation of angular momentum to the rotor and generator, with $I$ being the moment of inertia of rotor and generator, yields:
@@ -22,7 +23,6 @@ Therefore, controlling the torque in region II according to
 \begin{equation}
 	M_{gen} = \kappa \omega^2 \label{eq:control} 
 \end{equation} maximizes $P_{gen}$, with $\kappa$ being a proportionality constant that can be found experimentally. This control mechanism will be referred to as greedy control, since it seeks to maximize generated power of a single turbine. \cite[p.63 - 77]{hansen_aerodynamics_2008}
-However, this control strategy also maximizes the wake and more sophisticated strategies with the objective of maximizing the generated power of multiple turbines or a whole wind farm have been proposed. They can be divided into two main categories, axial induction control, which tries to lower the power intake of the first turbine, so that the wind speed at the following turbines is higher, and wake redirection control, which aims at steering the wake away from the second turbine. \cite{boersma_tutorial_2017} Recently also the development of dynamic approaches has begun \cite{frederik_helix_2020}. Many different approaches have been taken, from extremum seeking control \cite{ciri_large-eddy_2017} to physically motivated dynamic steering \cite{frederik_helix_2020}. The review in \cite{kheirabadi_quantitative_2019} shows that theoretical approaches for axial induction like \cite{vali_adjoint-based_2017} and \cite{munters_towards_2018} achieved increases of $\SI{20}{}$ percent and more. However these methods are not applicable to real turbines, since they require knowledge of the entire flow field.
 \subsection{Blade Element / Momentum Theory}
 To study the physical phenomena connected to wind turbines, models of the turbines and the airflow have been developed. Blade Element / Momentum Theory combines one-dimensional momentum theory and local forces on a section of a blade, the so called blade element, to give a quick way to analyze the loads on a rotor. Momentum theory assumes the flow to be steady, inviscid, incompressible and axisymmetric. The rotor is assumed to have an infinite number of blades and thus becomes a permeable disc. It is based on the integral forms of conservation of mass, momenta and energy: 
 \begin{align}
@@ -56,11 +56,12 @@ The local forces acting on the blade are calculated assuming a 2D flow around an
 \begin{figure}[H]
 	\centering
 	\def\svgwidth{0.5 \textwidth}
-	\input{pics/airfoil.pdf_tex}
+	\input{pics/diagrams/airfoil.pdf_tex}
 	\caption{Schematic of the local forces and velocities at a blade element.}
 	\label{fig:airfoil}
 \end{figure} 
-The thrust and torque on the rotor within an infinitesimally thick stream tube are calculated as follows \begin{align}
+The thrust and torque on the rotor within an infinitesimally thick stream tube are calculated as follows: 
+\begin{align}
 \frac{\mathrm{d}T}{\mathrm{d}r} &=N_b F_n = \frac{1}{2}N_b \rho L_c \Vert \vec{V}_{rel} \Vert^2 C_n \label{eq:thrust_airfoil}\\
 \frac{\mathrm{d}M_{aero}}{\mathrm{d}r} &= N_b r F_t = \frac{1}{2} N_b\rho L_c \Vert r \vec{V}_{rel} \Vert^2 C_t, \label{eq:torque_airfoil}
 \end{align} with $N_b$ being the number of blades and $L_c$ the chord length of the airfoil. The force coefficients $C_n$ and $C_t$ can be found by projecting lift and drag of the airfoil, which can usually be found as tabulated values, into the global coordinate system. Lift and drag depend on the local angle of attack $\alpha$ and the Reynolds number. The angle of attack $\alpha$ can be found through the difference of the angle between rotor plane and $\vec{V}_{rel}$, denoted as $\phi$ and the local pitch $\Phi_l$. Combining \eqref{eq:thrust_airfoil} and \eqref{eq:torque_airfoil} with the thrust and torque found by applying momentum theory to the same stream tube yields:
