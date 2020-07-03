@@ -1,3 +1,4 @@
+% !TEX root = ../../Diploma.tex
 \section{Setup}
 \subsection{Preliminary Studies in the BEM environment}
 To validate the implementation of the controllers and do studies of some of the hyperparameters of the agent the BEM environment is used. The airfoil data and physical properties are taken from the NREL5 reference \cite{jonkman_definition_2009}. The mean wind speed is $V_0=\SI{10.5}{m/s}$ and a velocity probe is placed ten and a half meters upstream of the turbine.
@@ -28,13 +29,13 @@ These parameters were chosen since they do not directly depend on the physics an
 		Value $l_2$ regularization coefficient & $\varepsilon_{v,l_2}$ & $0.1$ \\ \hline
 		Value network loss coefficient & $\varepsilon_{v,l}$ & $0.5$ \\ \hline
 		Learning rate & $\psi$ & $10^{-3}$ \\
-		\hline 
+		\hline
 	\end{tabular}
 	\label{tab:params_agent}
 \end{table}
 \subsection{The LBM-ALM Environment}
 \label{ssec:LBM_ALM_env}
-The properties of the turbine are again taken from the NREL5 reference \cite{jonkman_definition_2009}. The diameter $D$ of the rotor is therefore $D=\SI{126}{m}$. Three turbines are placed in the center of the cross-stream plane with a distance of five diameters in streamwise direction. The first turbine is placed three diameters downstream of the inlet. The domain is $19$ diameters long and six diameters wide and high. In order to reduce computational cost, a more refined domain is placed within the first domain. It is placed in the center of the crosswise plane and one diameter downstream of the inlet. The inflow is turbulent. The parameters of the domain are gathered in \autoref{tab:params_domain}. \\ 
+The properties of the turbine are again taken from the NREL5 reference \cite{jonkman_definition_2009}. The diameter $D$ of the rotor is therefore $D=\SI{126}{m}$. Three turbines are placed in the center of the cross-stream plane with a distance of five diameters in streamwise direction. The first turbine is placed three diameters downstream of the inlet. The domain is $19$ diameters long and six diameters wide and high. In order to reduce computational cost, a more refined domain is placed within the first domain. It is placed in the center of the crosswise plane and one diameter downstream of the inlet. The inflow is turbulent. The parameters of the domain are gathered in \autoref{tab:params_domain}. \\
 \begin{table}[h]
 	\centering
 	\caption{Parameters of the domain}
@@ -51,8 +52,7 @@ The properties of the turbine are again taken from the NREL5 reference \cite{jon
 	\end{tabular}
 	\label{tab:params_domain}
 \end{table}
-Training of the agents is again conducted in six environments in parallel. 
+Training of the agents is again conducted in six environments in parallel.
 \subsection{Optimizing Specific Behaviour}
 
 \subsection{Learning New Behaviour}
-

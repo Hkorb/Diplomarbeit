@@ -8,7 +8,8 @@ Diploma.run.xml
 *.blg
 *.sav
 *.bbl
+*.bcf
+*.bbx
 Diploma.synctex.gz
 pics/logo_schwarz.pdf
 Vorlage/*
-

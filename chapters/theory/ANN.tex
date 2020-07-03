@@ -1,3 +1,4 @@
+% !TEX root = ../../Diploma.tex
 \section{Machine Learning for a Continuous Control Problem}
 \subsection{Reinforcement Learning}
 \subsubsection{Markov Decision Process}
@@ -13,31 +14,31 @@ The goal of the learning process is to maximize the sum of the rewards in the lo
 \end{equation}
 It includes a discount rate $\gamma$, that emphasizes rewards in the near future. If $\gamma = 0$, $\mathsf{G}_t = \mathsf{R}_t$, if $\gamma = 1$, the return is the sum of all future rewards. \cite[p. 47- 57]{sutton_reinforcement_2018} \\
 Now the goal of the learning process is defined, but not what to learn. There exist three possible answers to this question: a model of the environment, a value function or a policy. Also combinations of these components is possible. In the case of continuous control, most common approaches are model-free, meaning either learning a value function, a policy or both. Therefore model-based methods will not be discussed further and the reader is referred to the book by Sutton and Barto \cite{sutton_reinforcement_2018}. \\
-In loose terms, the policy $\pi$ guides the agent on which action to take. More formally, $\pi_{\vec{\theta}}(\vec{\mathsf{a}}|\vec{\mathsf{s}})$ is the probability of action $\vec{\mathsf{A}}_t=\vec{\mathsf{a}}$ given a state $\vec{\mathsf{S}}_t=\vec{\mathsf{s}}$ under the policy $\pi$ with its parameters set to $\vec{\theta}$. The value function of a state $\vec{\mathsf{s}}$ under a policy $\pi$ is denoted as $\mathsf{v}_{\pi}(\vec{\mathsf{s}})$ and is the expected return if the agent acts according to $\pi$, starting from state $\vec{\mathsf{s}}$. Note that for convenience the parameters of $\pi$ were dropped. For MDPs it can be defined as: 
+In loose terms, the policy $\pi$ guides the agent on which action to take. More formally, $\pi_{\vec{\theta}}(\vec{\mathsf{a}}|\vec{\mathsf{s}})$ is the probability of action $\vec{\mathsf{A}}_t=\vec{\mathsf{a}}$ given a state $\vec{\mathsf{S}}_t=\vec{\mathsf{s}}$ under the policy $\pi$ with its parameters set to $\vec{\theta}$. The value function of a state $\vec{\mathsf{s}}$ under a policy $\pi$ is denoted as $\mathsf{v}_{\pi}(\vec{\mathsf{s}})$ and is the expected return if the agent acts according to $\pi$, starting from state $\vec{\mathsf{s}}$. Note that for convenience the parameters of $\pi$ were dropped. For MDPs it can be defined as:
 \begin{align}
 	\mathsf{v}_{\pi}(\vec{\mathsf{s}}) &\doteq \mathrm{E}_\pi \left[ \mathsf{G}_t \vert \vec{\mathsf{S}}_t= \vec{\mathsf{s}} \right] =
 	\mathrm{E}_\pi \left[\sum_{t'=t}^{\mathsf{T}}\gamma^{t'-t} \mathsf{R}_{t'} \vert \vec{\mathsf{S}}_t=\vec{\mathsf{s}}\right] \label{eq:value_func} \\
-	&= \sum_{\vec{\mathsf{a}}} \pi(\vec{\mathsf{a}} \vert \vec{\mathsf{s}}) 
+	&= \sum_{\vec{\mathsf{a}}} \pi(\vec{\mathsf{a}} \vert \vec{\mathsf{s}})
 	\sum_{\vec{\mathsf{s}}'} \sum_{\mathsf{r}} \mathsf{p}(\vec{\mathsf{s}}',\mathsf{r} \vert \vec{\mathsf{s}},\vec{\mathsf{a}}) \left( \mathsf{r} + \gamma \mathsf{v}_\pi(\vec{\mathsf{s}}') \right). \label{eq:Bellmann}
 \end{align}
 In the form of \eqref{eq:Bellmann}, the equation is referred to as the Bellmann equation and its unique solution is the value function $\mathsf{v}_\pi$. Analogously, the action-value function is the expected reward of taking action $\vec{\mathsf{a}}$ at state $\vec{\mathsf{s}}$ under the policy $\pi$, denoted by $\mathsf{q}_\pi(\vec{\mathsf{s}},\vec{\mathsf{a}})$. It is defined by \cite[p. 58-59]{sutton_reinforcement_2018}:
 \begin{equation}
 	\mathsf{q}_\pi(\vec{\mathsf{s}},\vec{\mathsf{a}}) \doteq \mathrm{E}_\pi \left[ \mathsf{G}_t \vert \vec{\mathsf{S}}_t=\vec{\mathsf{s}}, \vec{\mathsf{A}}_t=\vec{\mathsf{a}} \right] =
-	\mathrm{E}_\pi \left[\sum_{t'=t}^{\mathsf{T}}\gamma^{t'-t} \mathsf{R}_{t'} \vert \vec{\mathsf{S}}_t=\vec{\mathsf{s}}, \vec{\mathsf{A}}_t=\vec{\mathsf{a}}\right]. \label{eq:action_value_func} 
+	\mathrm{E}_\pi \left[\sum_{t'=t}^{\mathsf{T}}\gamma^{t'-t} \mathsf{R}_{t'} \vert \vec{\mathsf{S}}_t=\vec{\mathsf{s}}, \vec{\mathsf{A}}_t=\vec{\mathsf{a}}\right]. \label{eq:action_value_func}
 \end{equation}
 \subsubsection{Policy Gradient Methods}
 \label{sec:pgm}
 With a known value function, it is possible to construct a policy and by improving the value function, the policy can be improved. However, there exist advantages to directly improve the policy, especially for continuous state and action spaces. Policy gradient methods use the gradient of a perfomance measure $\mathsf{J}(\vec{\theta})$ with respect to the parameters $\vec{\theta}$ of a policy. This gradient can be used in optimization algorithms, such as stochastic gradient descent \cite[p. 201]{sutton_reinforcement_2018} or its extensions such as Adam \cite{kingma_adam_2017}. In its basic form, SGD performs an update according to:
 \begin{equation}
 \vec{\theta}_{t+1} = \vec{\theta}_t + \psi \nabla_{\vec{\theta}} \mathsf{J}(\vec{\theta}). \label{eq:sgd}
-\end{equation} 
+\end{equation}
 The parameter $\psi$ is called the learning rate. The policy gradient methods differ now only in the performance measure. The first such algorithm proposed is the REINFORCE algorithm \cite{williams_simple_1992}. Its definition of $\nabla_{\vec{\theta}} \mathsf{J}(\vec{\theta})$ is:
 \begin{align}
-\nabla_{\vec{\theta}} \mathsf{J}(\vec{\theta}) 
+\nabla_{\vec{\theta}} \mathsf{J}(\vec{\theta})
 &= \mathrm{E}_\pi \left[ \sum_{\vec{\mathsf{a}}} \pi_{\vec{\theta}} (\vec{\mathsf{a}}\vert \vec{\mathsf{S}}_t) \mathsf{q}_\pi(\vec{\mathsf{S}}_t, \vec{\mathsf{a}})
 \frac{\nabla_{\vec{\theta}} \pi_{\vec{\theta}}(\vec{\mathsf{a}}\vert \vec{\mathsf{S}}_t)}{\pi_{\vec{\theta}}(\vec{\mathsf{a}}\vert \vec{\mathsf{S}}_t)} \right]\label{eq:reinforce} \\
 &= \mathrm{E}_\pi \left[\mathsf{G}_t \frac{\nabla_{\vec{\theta}} \pi_{\vec{\theta}}(\vec{\mathsf{A}}_t\vert \vec{\mathsf{S}}_t)}{\pi_{\vec{\theta}}(\vec{\mathsf{A}}_t\vert \vec{\mathsf{S}}_t)} \right] \\
-&\approx \frac{1}{N_{e,b}}\sum^{N_e,b} \frac{1}{\mathsf{T}}\sum_t^\mathsf{T} \mathsf{G}_t \frac{\nabla_{\vec{\theta}} \pi_{\vec{\theta}}(\vec{\mathsf{A}}_t\vert \vec{\mathsf{S}}_t)}{\pi_{\vec{\theta}}(\vec{\mathsf{A}}_t\vert \vec{\mathsf{S}}_t)}. 
+&\approx \frac{1}{N_{e,b}}\sum^{N_e,b} \frac{1}{\mathsf{T}}\sum_t^\mathsf{T} \mathsf{G}_t \frac{\nabla_{\vec{\theta}} \pi_{\vec{\theta}}(\vec{\mathsf{A}}_t\vert \vec{\mathsf{S}}_t)}{\pi_{\vec{\theta}}(\vec{\mathsf{A}}_t\vert \vec{\mathsf{S}}_t)}.
 \end{align} It follows from the policy gradient theorem and substitution of all values of $\vec{\mathsf{A}}$ and $\vec{\mathsf{S}}$ with the actions and states from one trajectory. Thus, all the values necessary for the computation of the gradient are known. The expected value can approximated by the mean of a batch of episodes with $N_{e,b}$ being the number of episodes per batch. \cite[p.324-328]{sutton_reinforcement_2018} \\
 While this algorithm makes a computation possible, it is inefficient. Therefore newer methods have been devised such as the Trust Region Policy Optimization (TRPO) \cite{schulman_trust_2015} and the Proximal Policy Optimization (PPO) \cite{schulman_proximal_2017}. They are closely related and both propose a surrogate performance measure that limits the size of the gradient to ensure monotonic improvement in the case of TRPO and a close approximate in the case of ppo. However, the computation of the surrogate in PPO is simpler and more efficient, which helped policy gradient methods to become one of the most used algorithms in continuous control problems. One version of the surrogate performance measure, which is also referred to as objective, is:
 \begin{align}
@@ -51,8 +52,8 @@ In addition to the ratio probability clipping, other regularizations can be adde
 In the section above, a way to update parameters of the policy or value function was described, however, no description of the policy function itself was given. In principal any function with a set of parameters can be used, but usually, an artificial neural network (ANN) is used. ANNs are comprised of layers of neurons. More precisely, a layer $\mathsf{k}$ of $\mathsf{N}$ neurons takes as input a vector $\vec{\mathsf{z}}$ of length $\mathsf{M}$. The output of the layer is a new vector $\vec{\mathsf{y}}^\mathsf{k}$, which is then the input for the next layer of the network. In a simple feed-forward layer $\mathsf{y}^\mathsf{k}_j$ is computed according to:
 \begin{equation}
 	\mathsf{y}^\mathsf{k}_j = \mathsf{f}(\mathsf{w}^\mathsf{k}_{i,j} \, \mathsf{z}^\mathsf{k}_i + \mathsf{b}^\mathsf{k}_j). \label{eq:neuron}
-\end{equation} 
-The entries $\mathsf{w}^\mathsf{k}_{i,j}$ of the matrix $\vec{\mathsf{W}^\mathsf{k}}$ are called the weights of the layer and the entries $\mathsf{b}^\mathsf{k}_j$ of the vector $\vec{\mathsf{b}}^\mathsf{k}$ are called its bias. $\mathsf{f}$ is called the activation function, which can be chosen freely, but typical choices include the hyperbolic tangent ($\mathrm{\tanh}$), the sigmoid-function ($\sigma$) or the softplus ($\mathrm{softplus}$) function. A small overview over some of the key features of these functions is given in \autoref{tab:activations}. One desirable property for an activation function is that it is differentiable at least once in the entire domain. Thus a network of two layers with $\tanh$ as an activation function describes the function 
+\end{equation}
+The entries $\mathsf{w}^\mathsf{k}_{i,j}$ of the matrix $\vec{\mathsf{W}^\mathsf{k}}$ are called the weights of the layer and the entries $\mathsf{b}^\mathsf{k}_j$ of the vector $\vec{\mathsf{b}}^\mathsf{k}$ are called its bias. $\mathsf{f}$ is called the activation function, which can be chosen freely, but typical choices include the hyperbolic tangent ($\mathrm{\tanh}$), the sigmoid-function ($\sigma$) or the softplus ($\mathrm{softplus}$) function. A small overview over some of the key features of these functions is given in \autoref{tab:activations}. One desirable property for an activation function is that it is differentiable at least once in the entire domain. Thus a network of two layers with $\tanh$ as an activation function describes the function
 \begin{equation}
 \vec{\mathsf{y}} = \vec{\tanh} (\vec{\mathsf{b}^1} + \vec{\mathsf{W}^1} \cdot \vec{\tanh}( \vec{\mathsf{b}^0} + \vec{\mathsf{W}^0} \cdot \vec{\mathsf{z}} )), \label{eq:network}
 \end{equation}
@@ -61,26 +62,26 @@ The entries $\mathsf{w}^\mathsf{k}_{i,j}$ of the matrix $\vec{\mathsf{W}^\mathsf
 	\centering
 	\caption{Activation functions commonly used in neural networks}
 	\begin{tabular}{|c|c|c|c|c|}
-		\hline 
+		\hline
 		Name & Domain & Range & Definition & Derivative \\
 		\hline \hline
 		$\tanh$ & $ (-\infty, + \infty)$ & $(-1, -1)$ & $\tanh(x) = (e^x - e^{-x})(e^x + e^{-x})^{-1}$ & $1- \tanh^2(x)$\\
 		\hline
-		$\sigma$ & $(-\infty, + \infty)$ & $(0, -1 )$ & $\sigma(x) = (1 + e^{-x})^{-1} $ & $\sigma(x)\sigma(-x)$\\ 
-		\hline 
+		$\sigma$ & $(-\infty, + \infty)$ & $(0, -1 )$ & $\sigma(x) = (1 + e^{-x})^{-1} $ & $\sigma(x)\sigma(-x)$\\
+		\hline
 		$\mathrm{softplus}$&  $(-\infty, + \infty)$ & $(0, +\infty)$  & $\mathrm{softplus}(x) = \ln(e^x + 1)$ & $\sigma(x)$\\
 		\hline
 	\end{tabular}\label{tab:activations}
 \end{table}
 \subsubsection{Recurrent neural networks}
-It is obvious that a feed-forward network only produces an output influenced by the current activation. There can be no influence of previous activations for example in a time-series. Yet there exist many applications for which such a feature would be useful, for example the field of natural language processing \cite{ghosh_contextual_2016} or transient physical processes. This led to the development of recurrent neural networks. These include a hidden state, which is preserved. Especially the development of the long short-term memory (LSTM)  cell has had great impact on the success of recurrent neural networks due to its ability to preserve hidden states over a longer period of time \cite{hochreiter_long_1997}. An LSTM layer consists of one or multiple cells, with the input being the entire or parts of the activation. Each cell passes a vector called the cell state $\vec{\mathsf{c}}$ as well as its output $\vec{\mathsf{y}}$ to itself in the next time step. Thus a cell has as inputs at time $t$ the cell state and output of the previous time step, $\vec{\mathsf{c}}_{t-1}$ and $\vec{\mathsf{y}}_{t-1}$, as well as the current activation $\vec{\mathsf{z}}_t$. On the inside, the cell consists of a forget-gate, an input-gate and an output-gate. The forget-gate determines the influence of the cell-state, the input-gate determines the influence of the current time-step on the cell-state. The output-gate then computes the output based on the updated cell-state. A schematic of the cell is given in \autoref{fig:lstm}. From left to right the sigmoid layers are the forget-, input- and output-gate, whereas the $\tanh$-layer corresponds most closely to the layer of a feed-forward-network. 
+It is obvious that a feed-forward network only produces an output influenced by the current activation. There can be no influence of previous activations for example in a time-series. Yet there exist many applications for which such a feature would be useful, for example the field of natural language processing \cite{ghosh_contextual_2016} or transient physical processes. This led to the development of recurrent neural networks. These include a hidden state, which is preserved. Especially the development of the long short-term memory (LSTM)  cell has had great impact on the success of recurrent neural networks due to its ability to preserve hidden states over a longer period of time \cite{hochreiter_long_1997}. An LSTM layer consists of one or multiple cells, with the input being the entire or parts of the activation. Each cell passes a vector called the cell state $\vec{\mathsf{c}}$ as well as its output $\vec{\mathsf{y}}$ to itself in the next time step. Thus a cell has as inputs at time $t$ the cell state and output of the previous time step, $\vec{\mathsf{c}}_{t-1}$ and $\vec{\mathsf{y}}_{t-1}$, as well as the current activation $\vec{\mathsf{z}}_t$. On the inside, the cell consists of a forget-gate, an input-gate and an output-gate. The forget-gate determines the influence of the cell-state, the input-gate determines the influence of the current time-step on the cell-state. The output-gate then computes the output based on the updated cell-state. A schematic of the cell is given in \autoref{fig:lstm}. From left to right the sigmoid layers are the forget-, input- and output-gate, whereas the $\tanh$-layer corresponds most closely to the layer of a feed-forward-network.
 \begin{figure}[h]
 	\centering
 	\def\svgwidth{0.5 \textwidth}
 	\input{pics/diagrams/lstm.pdf_tex}
 	\caption{Schematic representation of an LSTM cell, operation in boxes represent layers with trainable weights, operations in ellipses are pointwise operations.}
 	\label{fig:lstm}
-\end{figure} 
+\end{figure}
 \subsubsection{Deep Reinforcement Learning}
 If RL is combined with a neural network, it is often referred to as deep reinforcement learning or DRL. In case of a policy gradient method, the neural network is part of the policy. For example, the state can be used as the input of a neural network and the output of the network can be used to set the parameters of a distribution function. Assuming that each entry in the action vector $\vec{\mathsf{A}}$ is a statistically indepedent random variable with the probability density function $pdf$, parameterized by $\mu_i$, the policy can be written as
 \begin{equation}
@@ -103,17 +104,17 @@ A schematic of DRL with a policy gradient method is given in \autoref{fig:mdp}.
 	\label{fig:mdp}
 \end{figure}
 \subsubsection{Training of a Neural Network}
-To use a neural network as policy in a policy gradient method algorithm, a way to compute the gradient of the objective $\mathsf{J}$ has to be found. The parameters of the policy are the weights and biases of the network, therefore the partial derivatives of $\mathsf{J}$ with respect to all weights and biases have to be found. Both described policy gradient methods express the objective gradient as a function $\mathsf{j}$ of the gradient of the policy: 
+To use a neural network as policy in a policy gradient method algorithm, a way to compute the gradient of the objective $\mathsf{J}$ has to be found. The parameters of the policy are the weights and biases of the network, therefore the partial derivatives of $\mathsf{J}$ with respect to all weights and biases have to be found. Both described policy gradient methods express the objective gradient as a function $\mathsf{j}$ of the gradient of the policy:
 \begin{equation}
 	\nabla_{\vec{\theta}} \mathsf{J} = \mathsf{j}\left(\frac{\nabla_{\vec{\theta}}\pi_{\vec{\theta}}(\vec{\mathsf{A}}|\vec{\mathsf{S}})} {\pi_{\vec{\theta}}(\vec{\mathsf{A}}|\vec{\mathsf{S}})}\right). \label{eq:grad_f}
-\end{equation} 
+\end{equation}
 Under the same assumptions as above, the gradient term is: \cite[p. 335]{sutton_reinforcement_2018}
 \begin{equation}
 	\frac{\nabla_{\vec{\theta}}\pi_{\vec{\theta}}(\vec{\mathsf{A}}|\vec{\mathsf{S}})} {\pi_{\vec{\theta}}(\vec{\mathsf{A}}|\vec{\mathsf{S}})} = \prod_i \frac{\partial pdf(\mathsf{A}_i, \mu_i(\vec{\mathsf{S}},\vec{\theta}))}{\partial \mu_i(\vec{\mathsf{S}}, \vec{\theta})} \frac{\nabla_{\vec{\theta}} \mu_i(\vec{\mathsf{S}},\vec{\theta})}{pdf(\mathsf{A}_i, \mu_i(\vec{\mathsf{S}}, \vec{\theta}))}. \label{eq:logit}
 \end{equation}
 Computing the gradient
 \begin{equation}
-	\nabla_{\vec{\theta}} \mu_i |_{\vec{\mathsf{S}}} = \left[\left. \frac{\partial \mu_i}{\partial \mathsf{b}^\mathsf{k}_j} \right|_{\vec{\mathsf{S}}}, 
+	\nabla_{\vec{\theta}} \mu_i |_{\vec{\mathsf{S}}} = \left[\left. \frac{\partial \mu_i}{\partial \mathsf{b}^\mathsf{k}_j} \right|_{\vec{\mathsf{S}}},
 	\left.\frac{\partial \mu_i}{\partial \mathsf{w}^\mathsf{k}_{j,k}}\right|_{\vec{\mathsf{S}}} \right]^T \label{eq:backprop2}
 \end{equation}
 can now be done efficiently via backpropagation:

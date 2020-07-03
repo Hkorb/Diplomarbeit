@@ -1,3 +1,4 @@
+% !TEX root = ../../Diploma.tex
 \section{Implementation}
 \subsection{Implementation Strategy}
 In this work the performance of two controllers in two simulation environments is studied. As a baseline case a greedy controller is implemented. This is compared to a controller that is governed by an RL-agent. They are compared in a one-dimensional BEM model of a turbine, which is used for a more rapid development and an initial parameter study, and an LBM-ALM environment with multiple turbines. Everything is implemented in Python with the exception of the LBM-ALM, which is implemented in C++.\\
@@ -9,7 +10,7 @@ The environment is implemented in the class \texttt{TurbineEnvironment}. The act
 \begin{equation}
 \hat{\mathsf{\vec{a}}}_t = \hat{\mathsf{\vec{a}}}_{t-1} + \alpha_f(\mathsf{\vec{a}}_t - \hat{\mathsf{\vec{a}}}_{t-1}) \label{eq:exp_filter}
 \end{equation}
-to make it continuous as done for example in \cite{rabault_deep_2018}. The decay rate $\alpha_f$ is $\alpha_f = r_f^{1/N_{t,A}}$ with a forget ratio $r_f$ of \SI{0.99}{}. $\hat{\mathsf{\vec{a}}}$ is applied as control of the turbine. To allow for more refined action space, the value of the control variables is calculated by 
+to make it continuous as done for example in \cite{rabault_deep_2018}. The decay rate $\alpha_f$ is $\alpha_f = r_f^{1/N_{t,A}}$ with a forget ratio $r_f$ of \SI{0.99}{}. $\hat{\mathsf{\vec{a}}}$ is applied as control of the turbine. To allow for more refined action space, the value of the control variables is calculated by
 \begin{equation}
 \varphi(t) = \varphi_{base} + \sum^{N_a}_{i=0} A_{\varphi, i} \cos(2 \pi f_{\phi,i}t),
 \end{equation}

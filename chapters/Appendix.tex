@@ -1,3 +1,4 @@
+% !TEX root = ../Diploma.tex
 \chapter{The Cumulant Lattice Boltzmann Method}
 \label{app:cumulant}
 \section{Derivation of cumulants}
@@ -6,10 +7,10 @@ To provide a more detailed explanation of the cumulant LBM, a more thorough deri
 f(\vec{\xi}) &= \sum_{i,j,k} f_{i,j,k} \delta(ic_s - \xi) \delta(jc_s - \upsilon) \delta(kc_s - \zeta) \label{eq:contin}\\
 F(\vec{\Xi}) &= \int_{-\infty}^{\infty}f(\vec{\xi})e^{-\vec{\Xi} \cdot \vec{\xi}} \mathrm{d}\vec{\xi}, \label{eq:cum_laplace}
 \end{align}
-with $\vec{\Xi} = [\Xi, \Upsilon, \mathrm{Z}]^T$ as the frequency vector. This distribution is then used in the cumulant generating function: 
+with $\vec{\Xi} = [\Xi, \Upsilon, \mathrm{Z}]^T$ as the frequency vector. This distribution is then used in the cumulant generating function:
 \begin{equation}
 	C_{\alpha,\beta,\gamma} = c_s^{-(\alpha+\beta+\gamma)} \left. \frac{\partial^\alpha \partial^\beta \partial^\gamma}{\partial \Xi^\alpha \partial \Upsilon^\beta \partial \mathrm{Z}^\gamma} \ln F(\Xi, \Upsilon, \mathrm{Z})\right|_{\Xi=\Upsilon=\mathrm{Z}=0}. \label{eq:cum}
-\end{equation} However, from that form, the cumulants are not directly computable. Comparing the cumulant generating function to the moment generating function 
+\end{equation} However, from that form, the cumulants are not directly computable. Comparing the cumulant generating function to the moment generating function
 \begin{equation}
 	M_{\alpha, \beta, \gamma} = c_s^{-(\alpha+\beta+\gamma)} \left. \frac{\partial^\alpha \partial^\beta \partial^\gamma}{\partial \Xi^\alpha \partial \Upsilon^\beta \partial \mathrm{Z}^\gamma} F(\Xi, \Upsilon, \mathrm{Z}) \right|_{\Xi=\Upsilon=\mathrm{Z}=0} = \sum_{i,j,k} i^\alpha j^\beta k^\gamma f_{i,j,k} \label{eq:moments}
 \end{equation} shows their similarity. Computing the cumulants of an arbitrary function shows how they can be expressed in terms of moments, two examples are given here:
@@ -21,7 +22,7 @@ Cumulants can also be computed from central moments, which is requires less comp
 \begin{equation}
 	C_{\alpha, \beta, \gamma}^* = \left(1-\hat{\omega}_{\alpha,\beta,\gamma}\right) C_{\alpha, \beta, \gamma}, \label{eq:relax}
 \end{equation}
-therefore each has its own relaxation frequency. The first frequency $\hat{\omega}_1$ governs the shear viscosity and $\hat{\omega}_2$ the bulk viscosity of the fluid by the same relation as \eqref{eq:nu}. The rest of the frequencies can be chosen freely and are usually set to one, resulting fully relaxing the cumulants, however a parametrized version of the collision operation exists, that changes some of the higher order relaxation frequencies, leading to fourth order accurate diffusion in a fully resolved simulation \cite{geier_parametrization_2017}. In underresolved simulations the parameter introduced in the parametrization can be used to influence the diffusivity and therefore acting as an implicit subgrid scale model, however so far only empirical evidence exists for this.\cite{geier_cumulant_2015} 
+therefore each has its own relaxation frequency. The first frequency $\hat{\omega}_1$ governs the shear viscosity and $\hat{\omega}_2$ the bulk viscosity of the fluid by the same relation as \eqref{eq:nu}. The rest of the frequencies can be chosen freely and are usually set to one, resulting fully relaxing the cumulants, however a parametrized version of the collision operation exists, that changes some of the higher order relaxation frequencies, leading to fourth order accurate diffusion in a fully resolved simulation \cite{geier_parametrization_2017}. In underresolved simulations the parameter introduced in the parametrization can be used to influence the diffusivity and therefore acting as an implicit subgrid scale model, however so far only empirical evidence exists for this.\cite{geier_cumulant_2015}
 The density, velocity and the terms of velocity gradient tensor can be identified with cumulants:
 \begin{align}
 \delta \rho &= M_{000} = C_{000} \label{eq:drho}\\
@@ -56,9 +57,9 @@ a_{xx} &= \frac{1}{8} \sum_{x,y,z}x\left(k_{xx-yy}+k_{xx-zz}\right) + 4xyv_{xyz}
 a_{yy} &= \frac{1}{8} \sum_{x,y,z}y k_{xy} - 4 xy v_{xyz} \\
 a_{xy} &= 2 \sum_{x,y,z} xyu_{xyz} \\
 a_{xyz} &= 8 \sum_{x,y,z} xyzu_{xyz} \\
-d_0 &= \frac{1}{8} \sum_{x,y,z} \delta \rho_{xyz}, 
+d_0 &= \frac{1}{8} \sum_{x,y,z} \delta \rho_{xyz},
 \end{align}
-in order to reduce the number of equations only unique descriptions are given, the other coefficients can easily extrapolated. Furthermore note that the coefficients of $\delta \hat{\rho}$ are the same as for the other interpolation functions with the exception of $d_0$. 
+in order to reduce the number of equations only unique descriptions are given, the other coefficients can easily extrapolated. Furthermore note that the coefficients of $\delta \hat{\rho}$ are the same as for the other interpolation functions with the exception of $d_0$.
 Thus the velocities are computed to second order. To arrive at equations for the second order cumulants, \eqref{eq:derivate1} - \eqref{eq:derivative2} are solved for cumulants. A term including the divergence of the velocity is neglected, since LBM is valid in a weakly compressible range and the term is thus much smaller.To compute the cumulants, the derivatves of $\hat{u}$, $\hat{v}$ and $\hat{w}$ are used and the constant terms in the derivatives are replaced with averaged values of second order moments. Also $\hat{\omega}_1$ has to be scaled with a factor $\sigma_{rf}$ to account for the change in refinement, it is $2$ when scaling from fine to coarse and $1/2$ when scaling from coarse to fine:
 \begin{align}
 	A_{011} &= \frac{\partial \hat{v}}{\partial z} + \frac{\partial \hat{w}}{\partial y} - b_z - c_y \\
@@ -76,6 +77,6 @@ Thus the velocities are computed to second order. To arrive at equations for the
 	C_{110} &= - \frac{\sigma_{rf} \rho}{3 \hat{\omega}_d} \left( \overline{k_{xy}} + A_{110} \right) \\
 	C_{200} &= \frac{\delta \rho}{9} - \frac{2 \sigma_{rf} \rho}{9 \hat{\omega}_d} \left( \overline{k_{xx-yy}} + B + \overline{k_{xx-zz}} + C \right) \\
 	C_{020} &= \frac{\delta \rho}{9} - \frac{2 \sigma_{rf} \rho}{9 \hat{\omega}_d} \left( -2 \left(\overline{k_{xx-yy}} + B\right) + \overline{k_{xx-zz}} + C \right) \\
-	C_{002} &= \frac{\delta \rho}{9} - \frac{2 \sigma_{rf} \rho}{9 \hat{\omega}_d} \left( \overline{k_{xx-yy}} + B - 2 \left( \overline{k_{xx-zz}} + C \right) \right).		
+	C_{002} &= \frac{\delta \rho}{9} - \frac{2 \sigma_{rf} \rho}{9 \hat{\omega}_d} \left( \overline{k_{xx-yy}} + B - 2 \left( \overline{k_{xx-zz}} + C \right) \right).
 \end{align}
-Now the cumulants can be transformed back to distributions, with the central moments up to order two and cumulants of order higher than two set to zero. 
+Now the cumulants can be transformed back to distributions, with the central moments up to order two and cumulants of order higher than two set to zero.

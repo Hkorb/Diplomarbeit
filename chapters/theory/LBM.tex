@@ -1,28 +1,29 @@
+% !TEX root = ../../Diploma.tex
 \section{The Lattice Boltzmann Method}
 \label{sec:LBM}
 \subsection{The Boltzmann Equation}
-The agent described in the section above needs to interact with an environment in order to train. In the case studied in this thesis the environment is a wind farm with multiple turbines. Therefore the fluid field within the wind park has to be calculated. 
-Traditionally solvers based on the discretized Navier-Stokes-Equations (NSE) are used. However, parallelization has proven to be difficult. A newer approach is the Lattice Boltzmann Method (LBM). The basics of its theory will be layed out in this chapter. \\ 
+The agent described in the section above needs to interact with an environment in order to train. In the case studied in this thesis the environment is a wind farm with multiple turbines. Therefore the fluid field within the wind park has to be calculated.
+Traditionally solvers based on the discretized Navier-Stokes-Equations (NSE) are used. However, parallelization has proven to be difficult. A newer approach is the Lattice Boltzmann Method (LBM). The basics of its theory will be layed out in this chapter. \\
 LBM is based on a discretization of the Boltzmann Equation derived from the kinetic theory of gases. This description is often referred to as a mesoscopic description, since it stands in  between the scale of continuum theory and the scale of single particles, which will be referred to as macroscopic and microscopic scale, respectively. While the NSE describe the medium through density $\rho$, velocity $\vec{u}$ and pressure $p$, the Boltzmann Equation considers the particle density function (pdf) $f$, which describes the distribution of particles in six dimensional phase space. It is therefore a functductiion of space $\vec{x}$, microscopic velocity $\vec{\xi} = [\xi, \upsilon, \zeta]^T$ and time $t$. However, the macroscopic quantities can be recovered from the pdf by taking its zeroth and first moments in velocity space:
 \begin{align}
 	\rho(\vec{x}, t) &= \int_{-\infty}^{\infty} f(\vec{x}, \vec{\xi}, t) \mathrm{d}\vec{\xi} \label{eq:rho} \\
 	\rho(\vec{x}, t) \vec{u}(\vec{x}, t) &= \int_{-\infty}^{\infty} \vec{\xi} f(\vec{x}, \vec{\xi}, t) \mathrm{d}\vec{\xi}. \label{eq:velocity}
 \end{align}
-Similarly the energy can be found by the third moment. The pressure can not be recovered directly, instead it is calculated by a state equation such as the ideal gas law. The pdf tends towards an equilibrium, which is given by the Maxwell equilibrium. . 
+Similarly the energy can be found by the third moment. The pressure can not be recovered directly, instead it is calculated by a state equation such as the ideal gas law. The pdf tends towards an equilibrium, which is given by the Maxwell equilibrium. .
 The Boltzmann Equation describes the change of the pdf over time. The change in time is governed by the collision operator $\Omega$. It describes the change of $f$ due to collisions of particles. In the Boltzmann Equation it is an integral operator, that accounts for all possible collisions. Therefore it is mathematically rather cumbersome which renders it unuseful for numerical discretization. Thus another formulation for $\Omega$ is used in LBM, which is an active area of research in the LBM community \cite{coreixas_comprehensive_2019}. The Boltzmann Equation is:
 \begin{equation}
 	\frac{D f(\vec{x}, \vec{\xi}, t)}{Dt} = \frac{ \partial f(\vec{x}, \vec{\xi}, t)}{\partial t} + \frac{ \partial f(\vec{x}, \vec{\xi}, t)}{\partial\vec{x}} \frac{\partial \vec{x}}{\partial t} + \frac{ \partial f(\vec{x}, \vec{\xi}, t)}{\partial \vec{\xi}} \frac{\partial \vec{\xi}}{\partial t} =  \Omega(f). \label{eq:boltzmann}
 \end{equation}
  The first form is the total derivative of $f$ with respect to time. The second term in the second form is a convection term, while the third term corresponds to a forcing term. In comparison to the NSE the Boltzmann Equation lacks a diffusive term. Diffusion occurs only through the collision operator. Through collision the particles tend towards equilibrium, the pdf of that equilibrium is known as the Maxwell equilibrium. It can be described by macroscopic quantities only:
-\begin{equation}	
-	f^{eq} (\vec{x}, \vec{\xi}, t) = \rho\left(\frac{1}{2 \pi \hat{R}\hat{T}}\right) e^{-\Vert \vec{v} \Vert^2/(2\hat{R}\hat{T}) }, \label{eq:equilibrium} 
+\begin{equation}
+	f^{eq} (\vec{x}, \vec{\xi}, t) = \rho\left(\frac{1}{2 \pi \hat{R}\hat{T}}\right) e^{-\Vert \vec{v} \Vert^2/(2\hat{R}\hat{T}) }, \label{eq:equilibrium}
 \end{equation}
 with $\hat{R}$ being the specific gas constant and $\hat{T}$ the temperature. The velocity $\vec{v}$ is defined as $\vec{v} = \vec{\xi}-\vec{u}$. \cite[p. 15- 21]{kruger_lattice_2017} \\
 \subsection{Discretization}
 In order to use the Boltzmann Equation for numerical simulations it needs to be discretized in space, velocity and time and a collision operator has to be defined. The velocity discretization can be based on the Hermite Series expansion, since its generating function is of the same form as the equilibrium distribution. To recover the first three moments of the distribution correctly, i.e. density, velocity and energy, truncation of the series after the first three terms is sufficient. The roots of the Hermite polynomials up to order three are the necessary discrete velocities $\vec{\xi}_i$. Together with the weights $b_i$, that are used in the Gauss-Hermite quadrature, the velocities form a velocity set. Velocity sets are denoted in the DdQq-notation, with d being the number of spatial dimensions and q the number of discrete velocities. In three dimensions D3Q15, D3Q19 and D3Q27 can be used to recover the Navier-Stokes-Equations, for high Reynolds number flows D3Q27 is the most suitable\cite{kang_effect_2013}. \cite[p. 73-93]{kruger_lattice_2017} \\
 Time is discretized via the explicit Euler forward scheme, which can be shown to be second order accurate. Space is discretized uniformly into a cubic grid, so that discrete pdfs move from one node of the grid to the other in one timestep. The ratio of timestep to lattice width is called the lattice speed of sound $c_s$. The computation of a timestep is usually separated into two parts, the streaming step, in which populations are advected from one node to the other, and the collision step, in which the collision operator is applied. Applying the entire discretization gives the Lattice Boltzmann Equation (LBE), with $\vec{c}_i$ being $\vec{\xi}_i/\sqrt{3}$ for convenience:
 \begin{equation}
-	f_i(\vec{x} + \vec{c}_i \Delta t, \vec{c}_i, t+\Delta t ) = \Omega_i(f) + f_i(\vec{x}_i, \vec{c}_i, t). \label{eq:LBE}	
+	f_i(\vec{x} + \vec{c}_i \Delta t, \vec{c}_i, t+\Delta t ) = \Omega_i(f) + f_i(\vec{x}_i, \vec{c}_i, t). \label{eq:LBE}
 \end{equation}
  It is, compared to discretized NSE, very simple and the separation into collision and streaming makes it easily parallelizible. Furthermore the equations to compute density and velocity are: \cite[p. 94-98]{kruger_lattice_2017}
 \begin{align}
