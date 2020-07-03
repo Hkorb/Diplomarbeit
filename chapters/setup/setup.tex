@@ -1,12 +1,14 @@
 \section{Setup}
 \subsection{Preliminary Studies in the BEM environment}
-To validate the implementation of the controllers and do studies of some of the hyperparameters of the agent the BEM environment is used. The airfoil data and physical properties are taken from the NREL5 reference \cite{jonkman_definition_2009}. The mean wind speed is $V_0=\SI{10.5}{m/s}$ and a velocity probe is placed ten and a half meters upstream of the turbine. A parameter study of the following parameters is conducted:
+To validate the implementation of the controllers and do studies of some of the hyperparameters of the agent the BEM environment is used. The airfoil data and physical properties are taken from the NREL5 reference \cite{jonkman_definition_2009}. The mean wind speed is $V_0=\SI{10.5}{m/s}$ and a velocity probe is placed ten and a half meters upstream of the turbine.
+The control variable is $M_{gen}$. The state of the environment consists of the angular velocity of the turbine and the streamwise velocity of the velocity probe. Training is conducted in six environments in parallel, with independently generated turbulent inflow. The size of the timestep of the simulation is $\Delta t = \SI{0.1}{s}$.
+A parameter study of the following parameters is conducted:
 \begin{itemize}
 	\item variance of action $\sigma_A$
 	\item policy $l_2$ regularization coefficient $\varepsilon_{p,l_2}$
 	\item value $l_2$ regularization coefficient $\varepsilon_{v,l_2}$
 \end{itemize}
-These parameters were chosen since they do not directly depend on the physics and layout of the problem. The other parameters are set according to \autoref{tab:params_agent}. The control variable is $M_{gen}$. 
+These parameters were chosen since they do not directly depend on the physics and layout of the problem. The parameters not varied are set according to \autoref{tab:params_agent}.
 \begin{table}[h]
 	\centering
 	\caption{Parameters of agent and environment}
@@ -49,6 +51,8 @@ The properties of the turbine are again taken from the NREL5 reference \cite{jon
 	\end{tabular}
 	\label{tab:params_domain}
 \end{table}
-\subsection{Learning New Behaviour}
+Training of the agents is again conducted in six environments in parallel. 
 \subsection{Optimizing Specific Behaviour}
-Frederiks et al. proposed the helix-approach in \cite{frederik_helix_2020}. This is used as basis for optimization of specific parameter.
+
+\subsection{Learning New Behaviour}
+
