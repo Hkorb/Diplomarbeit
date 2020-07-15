@@ -59,7 +59,7 @@
     \put(0.01588111,0.00619667){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Theta$\end{tabular}}}}%
     \put(0.72047378,0.40152822){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x$\end{tabular}}}}%
     \put(0.01961643,0.34516892){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\vec{V}_i$\end{tabular}}}}%
-    \put(0.04309364,0.24978133){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\vec{V}_{rel}$\end{tabular}}}}%
+    \put(0.03341532,0.24978133){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\vec{V}_{rel}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{airfoil.pdf}}%
     \put(0.19598087,0.15990948){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi$\end{tabular}}}}%
     \put(0.30068591,0.15280658){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\alpha$\end{tabular}}}}%

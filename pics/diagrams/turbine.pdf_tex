@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{501.76762138bp}%
+    \setlength{\unitlength}{531.68598806bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,23 +50,23 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.18020093)%
+  \begin{picture}(1,1.12507493)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{turbine.pdf}}%
-    \put(0.52402223,0.80281999){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.04484147\unitlength}\raggedright \end{minipage}}}%
-    \put(0.39385814,0.76412528){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M_{aero}$\end{tabular}}}}%
-    \put(0.83257433,0.830579){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M_{gen}$\end{tabular}}}}%
-    \put(0.72313432,0.76374539){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Psi$\end{tabular}}}}%
-    \put(0.75411929,1.04422364){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Theta, \omega$\end{tabular}}}}%
-    \put(0.56465231,0.8412682){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Phi_0$\end{tabular}}}}%
-    \put(0.02777543,1.10805416){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\vec{V}$\end{tabular}}}}%
-    \put(0.71218889,0.90423058){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$D$\end{tabular}}}}%
+    \put(0.55080582,0.76892949){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.04231821\unitlength}\raggedright \end{minipage}}}%
+    \put(0.42796616,0.73241217){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M_{aero}$\end{tabular}}}}%
+    \put(0.84199546,0.79512649){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M_{gen}$\end{tabular}}}}%
+    \put(0.73871372,0.73205365){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Psi$\end{tabular}}}}%
+    \put(0.76795514,0.99674919){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Theta, \omega$\end{tabular}}}}%
+    \put(0.58914961,0.80521419){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Phi_0$\end{tabular}}}}%
+    \put(0.08248319,1.05698791){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\vec{V}$\end{tabular}}}}%
+    \put(0.7283842,0.86463364){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$D$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{turbine.pdf}}%
-    \put(0.45864552,1.11648276){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Blade\end{tabular}}}}%
-    \put(0.8379125,0.96723882){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Nacelle\end{tabular}}}}%
+    \put(0.48910791,1.06494222){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Blade\end{tabular}}}}%
+    \put(0.84703325,0.92409636){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Nacelle\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{turbine.pdf}}%
-    \put(0.46263214,0.45049417){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Blade\end{tabular}}}}%
+    \put(0.49287019,0.43642931){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Blade\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{turbine.pdf}}%
   \end{picture}%
 \endgroup%

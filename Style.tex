@@ -26,7 +26,11 @@
 \usepackage{verbatim}
 \usepackage[tight,ugly]{units}
 % \usepackage{lmodern}
-\usepackage[hidelinks]{hyperref}              %links an referenzen setzen
+\usepackage[hidelinks,
+pdftitle={Coupling of an artificial neural network with LES-LBM to imrpove wind farm control},
+pdfsubject={Diploma thesis on coupling an artificial neural network with LES-LBM to improve wind farm control},
+pdfauthor={Henry Korb},
+pdfkeywords={Diplomathesis, LBM, Reinforcement Learning, Wind farm control, actuator line}]{hyperref}              %links an referenzen setzen
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.15}
 
@@ -108,3 +112,10 @@
 \usepackage{pdflscape}
 \def\algorithmautorefname{Algorithm}
 \usepackage{float}
+
+
+\newcommand{\legendOne}[1]{{\color[HTML]{1E90FF} \rule[3pt]{22pt}{1pt}} #1 }
+\newcommand{\legendTwo}[2]{\legendOne{#1}{\color[HTML]{DC143C}  \rule[3pt]{5pt}{1pt} \rule[3pt]{5pt}{1pt} \rule[3pt]{5pt}{1pt}} #2 }
+\newcommand{\legendThree}[3]{\legendTwo{#1}{#2}{\color[HTML]{228B22} \rule[3pt]{5pt}{1pt} \rule[3pt]{1pt}{1pt} \rule[3pt]{5pt}{1pt} \rule[3pt]{1pt}{1pt}} #3 }
+\newcommand{\legendFour}[4]{\legendThree{#1}{#2}{#3}{\color[HTML]{000080} \rule[3pt]{3pt}{1pt} \rule[3pt]{3pt}{1pt} \rule[3pt]{3pt}{1pt} \rule[3pt]{3pt}{1pt}} #4 }
+\newcommand{\legendFive}[5]{\legendFour{#1}{#2}{#3}{#4}{\color{black} \rule[3pt]{1pt}{1pt} \rule[3pt]{1pt}{1pt} \rule[3pt]{1pt}{1pt} \rule[3pt]{1pt}{1pt} \rule[3pt]{1pt}{1pt} \rule[3pt]{1pt}{1pt}} #5 }

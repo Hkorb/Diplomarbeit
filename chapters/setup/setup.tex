@@ -13,23 +13,23 @@ These parameters were chosen since they do not directly depend on the physics an
 \begin{table}[h]
 	\centering
 	\caption{Parameters of agent and environment}
-	\begin{tabular}{|c|c|c|}
-		\hline
+	\begin{tabular}{ccc}
+		\toprule
 		Parameter & Symbol & Value \\
-		\hline \hline
-		Time per action & & $\SI{1.0}{s}$ \\ \hline
-		Number of actions per episode & $N_{A,e}$ & $500$ \\ \hline
-		Number of episodes per batch & $N_{e,b}$ & $12$ \\ \hline
-		Width of actor network & & $100$ \\ \hline
-		Width of value network & & $200$ \\ \hline
-		Variance of action & $\sigma_A$ & $0.1$ \\ \hline
-		Importance ratio clipping & $\beta$ & $0.2$ \\ \hline
-		Discount factor & $\gamma$ & $0.95$ \\ \hline
-		Policy $l_2$ regularizaion coefficient & $\varepsilon_{p,l_2} $ & $0.1$ \\ \hline
-		Value $l_2$ regularization coefficient & $\varepsilon_{v,l_2}$ & $0.1$ \\ \hline
-		Value network loss coefficient & $\varepsilon_{v,l}$ & $0.5$ \\ \hline
+		\midrule
+		Time per action & $\Delta t_A$ & $\SI{1.0}{s}$ \\ 
+		Number of actions per episode & $N_{A,e}$ & $500$ \\
+		Number of episodes per batch & $N_{e,b}$ & $12$ \\
+		Width of actor network & & $100$ \\ 
+		Width of value network & & $200$ \\ 
+		Variance of action & $\sigma_A$ & $0.1$ \\ 
+		Importance ratio clipping & $\beta$ & $0.2$ \\ 
+		Discount factor & $\gamma$ & $0.95$ \\ 
+		Policy $l_2$ regularization coefficient & $\varepsilon_{p,l_2} $ & $0.1$ \\ 
+		Value $l_2$ regularization coefficient & $\varepsilon_{v,l_2}$ & $0.1$ \\ 
+		Value network loss coefficient & $\varepsilon_{v,l}$ & $0.5$ \\ 
 		Learning rate & $\psi$ & $10^{-3}$ \\
-		\hline
+		\bottomrule
 	\end{tabular}
 	\label{tab:params_agent}
 \end{table}
@@ -39,20 +39,52 @@ The properties of the turbine are again taken from the NREL5 reference \cite{jon
 \begin{table}[h]
 	\centering
 	\caption{Parameters of the domain}
-	\begin{tabular}{|c|c|}
-	\hline
-	Parameter & Value \\ \hline \hline
-	Rotor diameter & \SI{126}{m} \\ \hline
-	Outer domain H x W x L & $\SI{6}{D} \times \SI{6}{D} \times \SI{19}{D}$ \\ \hline
-	Outer domain resolution & $\SI{8}{nodes/D}$ \\ \hline
-	Inner domain H x W x L & $\SI{5}{D} \times \SI{5}{D} \times \SI{16}{D}$ \\ \hline
-	Inner domain resolution & $\SI{16}{nodes/D}$ \\ \hline
-	Turbulence intensity & $\SI{5}{\percent} $ \\ \hline
-	Mean wind speed & $\SI{10.5}{m/s} $ \\ \hline
+	\begin{tabular}{cc}
+	\toprule
+	Parameter & Value \\ 
+	\midrule
+	Rotor diameter & \SI{126}{m} \\ 
+	Outer domain H x W x L & $\SI{6}{D} \times \SI{6}{D} \times \SI{19}{D}$ \\ 
+	Outer domain resolution & $\SI{8}{nodes/D}$ \\ 
+	Inner domain H x W x L & $\SI{5}{D} \times \SI{5}{D} \times \SI{16}{D}$ \\ 
+	Inner domain resolution & $\SI{16}{nodes/D}$ \\ 
+	Turbulence intensity & $\SI{5}{\percent} $ \\ 
+	Mean wind speed & $\SI{10.5}{m/s} $ \\
+	\bottomrule
 	\end{tabular}
 	\label{tab:params_domain}
 \end{table}
 Training of the agents is again conducted in six environments in parallel.
 \subsection{Optimizing Specific Behaviour}
-
+\label{ssec:dyn_description}
+In the LBM-ALM Environment with the domain as specified in \autoref{ssec:LBM_ALM_env}, an agent controlling the amplitude of a sinusoidal varation of the pitch angles like in the helix approach will be trained. Therefore the equation described in \eqref{control_amplitude} will be modified like this:
+\begin{equation}
+	\varphi(t) = \varphi_{base} + \sum^{N_a}_{i=0} A_{\varphi,i} \cos(2 \pi f_{\phi,i} t + \Psi + \Psi_0)
+\end{equation} 
+$\Psi_0$ is the initial offset of the three blades. The frequency $f_{\Phi,0}$ is chosen according to Frederik et al. so that the Strouhal Number $\mathrm{St} = f_{\Phi, 0} D/v_0 = 0.25$. In difference to the setup by Frederik et al., the angular velocity of the rotor will not be constant, but is determined by \eqref{eq:ang_mom}. The generator torque is controlled by a greedy controller. Two different configurations of the agent will be compared. The first agent has ten nodes per layer, while the second agent has $400$ nodes per layer. The other parameters of the agent are the same as in \autoref{tab:params_agent}.
 \subsection{Learning New Behaviour}
+To assess whether the RL agent is able to discover a new control strategy for wind farm control, an agent controlling the generator torque is tested, again in the environment specified by \autoref{ssec:LBM_ALM_env}. Three different agents will be compared. The first agent has a discount rate of $\gamma = 0.95$ and a number of actions per episode $N_{A,e} = 500$, which corresponds to setup used in the preliminary studies. The second agent has the same $N_{A,e}$ but a discount rate of $\gamma = 0.99$. The third agent also has a discount rate of $\gamma = 0.99$ but the number of actions per episode is $N_{A,e} = 1500$. The parameters differing from \autoref{tab:params_agent} are gathered in \autoref{tab:params_new_b}. \\
+\begin{table}[h]
+	\centering
+	\caption{Parameters of agent for learning new behaviour}
+	\begin{tabular}{cccc}
+		\toprule 
+		Parameter & Case 1 & Case 2 & Case 3 \\ 
+		\midrule
+		$\gamma$ & $0.95$ & $0.99$ & $0.99$ \\ 
+		$N_{A,e}$ & $500$ & $500$ & $1500$ \\ 
+		Width of actor network & $400$ & $400$ & $400$ \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:params_new_b}
+\end{table}
+This choice of parameters is motivated by a closer look at the meaning of reward and return in the context of this setup. The number of actions in the time it takes for information to travel from the first turbine to the second turbine can be estimated to be $N_{t,T} = d_T/(v_0 \cdot \Delta t_A) = 60$. This is a lower bound on the estimate, since information might travel slower due to a reduced velocity in the wake. The reward is calculated as follows: 
+\begin{equation} 
+\mathsf{R}(t) = \frac{P_0(t) + P_1(t) + P_2(t)}{\SI{}{MW}}.
+\end{equation} Combining this with \eqref{eq:return}, the return of an action at the first turbine should be calculated like this:
+\begin{equation}
+	\mathsf{G}_{t,0} = \sum^\mathsf{T}_{t'=t} \sum_{i=0}^{N_T-1}P_i(t'+iN_{t,T})\gamma^{t'+iN_{t,T}-t}.
+\end{equation}
+Considering the values of this setup, a discount rate of $0.95$ leads to a static discount of the seconds turbine power of around $95$ percent, whereas a discount rate of $0.99$ discounts the second turbines power only by $45$ percent. When trying to achieve a combined control a high discount rate therefore seems to be beneficial. However, this also leads to little discounting of the power after information of the first turbine has reached the second turbine and therefore makes the return more noisy, as information that is probably less influenced by the action of the first turbine is added to the return. Therefore a balance between these two influences has to be found. There are also more factors to take into account, since the return for the actions at all three turbines is computed according to \eqref{eq:return}. 
+
+

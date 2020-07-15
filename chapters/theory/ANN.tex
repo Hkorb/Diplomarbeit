@@ -61,16 +61,14 @@ The entries $\mathsf{w}^\mathsf{k}_{i,j}$ of the matrix $\vec{\mathsf{W}^\mathsf
 \begin{table}
 	\centering
 	\caption{Activation functions commonly used in neural networks}
-	\begin{tabular}{|c|c|c|c|c|}
-		\hline
+	\begin{tabular}{ccccc}
+		\toprule
 		Name & Domain & Range & Definition & Derivative \\
-		\hline \hline
+		\midrule
 		$\tanh$ & $ (-\infty, + \infty)$ & $(-1, -1)$ & $\tanh(x) = (e^x - e^{-x})(e^x + e^{-x})^{-1}$ & $1- \tanh^2(x)$\\
-		\hline
 		$\sigma$ & $(-\infty, + \infty)$ & $(0, -1 )$ & $\sigma(x) = (1 + e^{-x})^{-1} $ & $\sigma(x)\sigma(-x)$\\
-		\hline
 		$\mathrm{softplus}$&  $(-\infty, + \infty)$ & $(0, +\infty)$  & $\mathrm{softplus}(x) = \ln(e^x + 1)$ & $\sigma(x)$\\
-		\hline
+		\bottomrule
 	\end{tabular}\label{tab:activations}
 \end{table}
 \subsubsection{Recurrent neural networks}
