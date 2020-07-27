@@ -1,9 +1,10 @@
 *.aux
 *.toc
 *.log
-Diploma.bib
-Diploma-blx.bib
-Diploma.run.xml
+*.bib
+*.xml
+*.fls
+*.fdb_latexmk
 *.out
 *.blg
 *.sav
