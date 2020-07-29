@@ -7,7 +7,7 @@ The mathematical formulation on which RL is based is the Markov Decision Process
 \mathsf{p}(\vec{\mathsf{s}}',\mathsf{r} \vert \vec{\mathsf{s}},\vec{\mathsf{a}}) \doteq Pr(\vec{\mathsf{S}}_t=\vec{\mathsf{s}}', \mathsf{R}_t=\mathsf{r} \vert \vec{\mathsf{S}}_{t-1} = \vec{\mathsf{s}}, \vec{\mathsf{A}}_{t-1} = \vec{\mathsf{a}}). \label{eq:prob_func}
 \end{equation}
 It defines the probability of state $\vec{\mathsf{s}}'$ with reward $\mathsf{r}$ occuring, given the state $\vec{\mathsf{s}}$ and action $\vec{\mathsf{a}}$. Note that the following derivations will be constricted to finite MDPs, meaning that state and action space are discrete. However, the concepts all are transferable to continuous action and state space. \\
-For a process to be a Markov Decision Process, $\mathsf{p}$ must only depent on $\vec{\mathsf{s}}$ and $\vec{\mathsf{a}}$. Therefore, $\vec{\mathsf{s}}$ must include all information necessary to determine the future behaviour of the environment. This is not limited to information currently present in the environment. When thinking of this in terms of the wind farm problem at hand, the state could include data about wind speeds at the current time but also from time steps in the past. This approach allows to model virtually any interaction as a MDP, simply by including every bit of information from the beginning of time into the state. Obviously, this is not feasible and therefore a careful choice of the information in the state is necessary. \\
+For a process to be a Markov Decision Process, $\mathsf{p}$ must only depend on $\vec{\mathsf{s}}$ and $\vec{\mathsf{a}}$. Therefore, $\vec{\mathsf{s}}$ must include all information necessary to determine the future behaviour of the environment. This is not limited to information currently present in the environment. When thinking of this in terms of the wind farm problem at hand, the state could include data about wind speeds at the current time but also from time steps in the past. This approach allows to model virtually any interaction as a MDP, simply by including every bit of information from the beginning of time into the state. Obviously, this is not feasible and therefore a careful choice of the information in the state is necessary. \\
 The goal of the learning process is to maximize the sum of the rewards in the long run. Therefore a new quantity is defined, the return $\mathsf{G}_t$ that includes not only $\mathsf{R}_t$ but also the rewards received in future time steps. While in many applications of RL, the process naturally comes to an end, referred to as the terminal state $\vec{\mathsf{S}}_\mathsf{T}$, in problems of continuous control this is not the case. Therefore the timeline is broken up into episodes of length $\mathsf{T}$. This allows for a finite computation of $\mathsf{G}_t$. A typical formulation of $\mathsf{G}_t$, referred to as a discounted return is:
 \begin{equation}
 \mathsf{G}_t \doteq \mathsf{R}_t + \gamma \mathsf{R}_{t+1} + \gamma^2 \mathsf{R}_{t+2} + \gamma^3 \mathsf{R}_{t+3}... = \sum_{t'=t}^{\mathsf{T}}\gamma^{t'-t} \mathsf{R}_{t'},\quad \gamma \in [0, 1]. \label{eq:return}
@@ -81,7 +81,7 @@ It is obvious that a feed-forward network only produces an output influenced by 
 	\label{fig:lstm}
 \end{figure}
 \subsubsection{Deep Reinforcement Learning}
-If RL is combined with a neural network, it is often referred to as deep reinforcement learning or DRL. In case of a policy gradient method, the neural network is part of the policy. For example, the state can be used as the input of a neural network and the output of the network can be used to set the parameters of a distribution function. Assuming that each entry in the action vector $\vec{\mathsf{A}}$ is a statistically indepedent random variable with the probability density function $pdf$, parameterized by $\mu_i$, the policy can be written as
+If RL is combined with a neural network, it is often referred to as deep reinforcement learning or DRL. In case of a policy gradient method, the neural network is part of the policy. For example, the state can be used as the input of a neural network and the output of the network can be used to set the parameters of a distribution function. Assuming that each entry in the action vector $\vec{\mathsf{A}}$ is a statistically independent random variable with the probability density function $pdf$, parametrized by $\mu_i$, the policy can be written as
 \begin{equation}
 	\pi_{\vec{\theta}}(\vec{\mathsf{A}}|\vec{\mathsf{S}}) = \prod_i pdf(\mathsf{A}_i, \mu_i(\vec{\mathsf{S}},\vec{\theta})). \label{eq:policy}
 \end{equation}
@@ -98,7 +98,7 @@ A schematic of DRL with a policy gradient method is given in \autoref{fig:mdp}.
 	\centering
 	\def\svgwidth{0.7 \textwidth}
 	\input{pics/diagrams/mdp.pdf_tex}
-	\caption{Schematic of a markov decision process for a policy gradient method with a neural network.}
+	\caption{Schematic of a Markov decision process for a policy gradient method with a neural network.}
 	\label{fig:mdp}
 \end{figure}
 \subsubsection{Training of a Neural Network}
