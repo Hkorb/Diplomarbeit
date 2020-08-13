@@ -40,14 +40,14 @@ As was stated before, LBM is usually used on a uniform grid. However, often a va
 	\hat{v} &= b_0 + b_x x + b_y y + b_z z + b_{xx} x^2 + b_{xy} xy + b_{xz} xz + b_{yy} y^2 + b_{yz} yz + b_{zz} z^2 + b_{xyz}xyz \\
 	\hat{w} &= c_0 + c_x x + c_y y + c_z z + c_{xx} x^2 + c_{xy} xy + c_{xz} xz + c_{yy} y^2 + c_{yz} yz + c_{zz} z^2 + c_{xyz}xyz
 \end{align}
-To evualate the interpolation functions, constraints have to be defined. The velocity and density in the donor node place 32 constraints, since there are eight of each, thus nine more are required for the 41 degrees of freedom. The second derivative of velocities in the center of the local coordinate system are chosen as these additional constraints. They can be computed by taking the first order central difference of the terms of the velocity gradient tensor, which will be denoted as $D_xx u$ and so on. However, the terms in the main diagonal of the velocity gradient tensor are lengthy and include $\hat{\omega}_2$. This is somewhat undesirable and it was shown in \eqref{eq:derivate1} that differences of the terms can be expressed more directly in differences of cumulants. Therefore the remaining nine constraints are chosen like this:
+To evaluate the interpolation functions, constraints have to be defined. The velocity and density in the donor node place 32 constraints, since there are eight of each, thus nine more are required for the 41 degrees of freedom. The second derivative of velocities in the center of the local coordinate system are chosen as these additional constraints. They can be computed by taking the first order central difference of the terms of the velocity gradient tensor, which will be denoted as $D_{xx} u$ and so on. However, the terms in the main diagonal of the velocity gradient tensor are lengthy and include $\hat{\omega}_2$. This is somewhat undesirable and it was shown in \eqref{eq:derivate1} that differences of the terms can be expressed more directly in differences of cumulants. Therefore the remaining nine constraints are chosen like this:
 \begin{align}
 \frac{\partial^2}{\partial x^2} \hat{v}+\frac{\partial^2}{\partial y \partial x} \hat{u} &= D_{xx} v + D_{xy} u \label{eq:const1} \\
 2\frac{\partial^2}{\partial x^2} \hat{u} - \frac{\partial^2}{\partial x \partial y} \hat{v} - \frac{\partial^2}{\partial x \partial z} \hat{w} &= 2 D_{xx}u- D_{xy}v - D_{xz}w \\
 2\frac{\partial^2}{\partial y^2} \hat{v} - \frac{\partial^2}{\partial x \partial y} \hat{u} - \frac{\partial^2}{\partial y \partial z} \hat{w} &= 2 D_{yy}v- D_{xy}u - D_{yz}w \\
 2\frac{\partial^2}{\partial z^2} \hat{w} - \frac{\partial^2}{\partial y \partial z} \hat{v} - \frac{\partial^2}{\partial x \partial z} \hat{u} &= 2 D_{zz}w- D_{yz}v - D_{xz}u, \label{eq:const2}
 \end{align}
-the missing five constraints by the off diagonal can easily be extrapolated. \\
+the missing five constraints by the off diagonal can be extrapolated. \\
 Thus a system of linear equations is established that can be solved for the coefficients of the interpolation functions:
 \begin{align}
 a_0 &= \frac{1}{32} \sum_{x,y,z}  -4 D_{xx}u-2 D_{xy}v -4D_{yy}u- 2 D_{xz}w + -4 D_{zz}u + 4 u_{xyz} + 4xyv_{xyz} + 4 xzw_{xyz} \\
@@ -59,8 +59,8 @@ a_{xy} &= 2 \sum_{x,y,z} xyu_{xyz} \\
 a_{xyz} &= 8 \sum_{x,y,z} xyzu_{xyz} \\
 d_0 &= \frac{1}{8} \sum_{x,y,z} \delta \rho_{xyz},
 \end{align}
-in order to reduce the number of equations only unique descriptions are given, the other coefficients can easily extrapolated. Furthermore note that the coefficients of $\delta \hat{\rho}$ are the same as for the other interpolation functions with the exception of $d_0$.
-Thus the velocities are computed to second order. To arrive at equations for the second order cumulants, \eqref{eq:derivate1} - \eqref{eq:derivative2} are solved for cumulants. A term including the divergence of the velocity is neglected, since LBM is valid in a weakly compressible range and the term is thus much smaller.To compute the cumulants, the derivatves of $\hat{u}$, $\hat{v}$ and $\hat{w}$ are used and the constant terms in the derivatives are replaced with averaged values of second order moments. Also $\hat{\omega}_1$ has to be scaled with a factor $\sigma_{rf}$ to account for the change in refinement, it is $2$ when scaling from fine to coarse and $1/2$ when scaling from coarse to fine:
+in order to reduce the number of equations only unique descriptions are given, the other coefficients can be extrapolated. Furthermore note that the coefficients of $\delta \hat{\rho}$ are the same as for the other interpolation functions with the exception of $d_0$.
+Thus the velocities are computed to second order. To arrive at equations for the second order cumulants, \eqref{eq:derivate1} - \eqref{eq:derivative2} are solved for cumulants. A term including the divergence of the velocity is neglected, since LBM is valid in a weakly compressible range and the term is thus much smaller. To compute the cumulants, the derivatives of $\hat{u}$, $\hat{v}$ and $\hat{w}$ are used and the constant terms in the derivatives are replaced with averaged values of second order moments. Also $\hat{\omega}_1$ has to be scaled with a factor $\sigma_{rf}$ to account for the change in refinement, it is $2$ when scaling from fine to coarse and $1/2$ when scaling from coarse to fine:
 \begin{align}
 	A_{011} &= \frac{\partial \hat{v}}{\partial z} + \frac{\partial \hat{w}}{\partial y} - b_z - c_y \\
 	&= b_{xz} x + b_{yz} y + 2 b_{zz} z + b_{xyz} xy + c_{xy} x + 2 c_{yy} y + c_{yz} z + c_{xyz} xz \\

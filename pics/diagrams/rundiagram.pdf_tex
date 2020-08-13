@@ -87,6 +87,6 @@
     \put(0.37358551,0.32932975){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}LBM\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=12]{rundiagram.pdf}}%
     \put(0.32933885,0.34829261){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\vec{F}$\end{tabular}}}}%
-    \put(0.30437894,0.31041287){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M_{aero}$\end{tabular}}}}%
+    \put(0.30437894,0.31041287){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$u$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

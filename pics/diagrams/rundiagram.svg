@@ -1100,16 +1100,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="715.11462"
-     inkscape:cy="358.30369"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="262.96538"
+     inkscape:cy="253.84591"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
-     inkscape:window-width="1848"
-     inkscape:window-height="1016"
-     inkscape:window-x="72"
-     inkscape:window-y="1107"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      objecttolerance="10"
      gridtolerance="10000"
@@ -1763,6 +1763,6 @@
          id="tspan2575"
          x="26.526123"
          y="7.271616"
-         style="stroke-width:0.26458332">$M_{aero}$</tspan></text>
+         style="stroke-width:0.26458332">$u$</tspan></text>
   </g>
 </svg>

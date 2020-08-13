@@ -1,16 +1,12 @@
 % !TEX root = ../Diploma.tex
 \chapter*{Kurzfassung}
 \thispagestyle{empty}
-\vspace{0cm}
-
+\begin{otherlanguage}{german}
 \textbf{\large Kopplung eines künstlichen neuronalen Netzwerks mit LES-LBM zur Verbesserung einer Windpark-Steuerung}\\
-
-
-15 zeilen
-\vspace{2cm}  \\
-{\bfseries \sffamily \huge Abstract}
-\vspace{1cm}
-
-\textbf{\large Coupling of an artificial neural network with LES-LBM to improve wind farm control }\\
-
-15 lines \\
+Die Steuerung von Windparks zur Erhöhung ihrer Effizienz ist hoch komplex und enthält viele nicht-lineare Phänomene. In dieser Arbeit wird Reinforcement-Learning (RL) auf diese Aufgabe angewandt. Ein kleiner Windpark wird mittels Large-Eddy Simulation basierend auf der Lattice Boltzmann Methode dargestellt. An diese Simulation wird ein künstliches neuronales Netz gekoppelt, das mittels RL trainiert wird. Ein Framework zur Kopplung eines RL-Agenten zu verschiedenen Windpark- und Turbinen-Simulationen wird entwickelt. Das Framework wird dazu benutzt, Parameterstudien der Hyperparameter des RL-Algorithmus anhand eines einfachen Turbinenmodells durchzuführen. Ausserdem werden Parameter eines bereits bestehenden Steuerungsansatzes, dem Helix-Ansatz, optimiert und es wird versucht, eine neue Steuerungsstrategie zu entwickeln. Des Weiteren werden die Ergebnisse der entwickelten Strategien analysiert, sowohl die physikalischen Größen der Turbinen, als auch das Strömungsfeld um die Turbinen herum. Zudem wird die Analyse der Physik des Helix-Ansatzes auf mehrere Turbinen erweitert und der Einfluss des Phasenversatzes zwischen mehreren helixförmigen Nachläufen auf die erreichbare Effizienzsteigerung wird untersucht. Schließlich werden einige der Schwierigkeiten der Anwendung von RL auf komplexe Probleme wie der Windpark Steuerung untersucht und Ansätze für zukünftige Arbeiten vorgeschlagen.
+\end{otherlanguage}
+\vspace{2cm} \\
+{\bfseries \sffamily \huge Abstract} \\
+\vspace{1cm} \\
+\textbf{\large Coupling of an artificial neural network with LES-LBM to improve wind farm control}\\
+The control of wind farms to improve their efficiency is highly complex and features many non-linear phenomena. In this work, reinforcement learning (RL) is applied to this task. A small wind farm is simulated by large eddy simulation with the lattice Boltzmann method. An artificial neural network is coupled to this simulation and trained via reinforcement learning. A framework to couple an RL agent to different types of wind farm  and single-turbine simulations is developed. The developed framework is used to conduct parameter studies of some of the hyperparameters of the RL algorithm using a simple turbine model, to improve the parameters of an already existing approach, the helix approach, and it is attempted to develop a new control strategy. The results of the developed strategies are analysed, both the quantities of the turbines as well as the resulting flow-field around the turbines. Furthermore, the analysis of the governing physics of the helix approach are extended to multiple turbines and the influence of the phase shift between multiple helical wakes on improving wind farm efficiency is examined. Finally, some of the difficulties of applying RL to complex problems such as wind farm control are examined and possible solutions to be explored in future works are given.
